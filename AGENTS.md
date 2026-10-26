@@ -36,6 +36,11 @@ Ce document sert de référence technique et de guide d'architecture pour tout a
 
 ```text
 co2-heritage-theme/
+├── .github/
+│   └── workflows/
+│       └── release.yml       # Action GitHub : Release Please + packaging module.zip & upload assets
+├── .release-please-manifest.json # Suivi de la version courante pour Release Please
+├── release-please-config.json    # Configuration Release Please (mise à jour auto de module.json)
 ├── AGENTS.md                 # Documentation d'architecture et règles pour les agents
 ├── README.md                 # Documentation utilisateur & installation
 ├── module.json               # Manifeste Foundry VTT v14 (id: co2-heritage-theme, system: co2)
@@ -113,3 +118,31 @@ Lors de toute modification dans [`styles/sheets-co2.css`](./styles/sheets-co2.cs
 7. **Lignes d'attaques PNJ (`.item.attack`) et cartes de dommages (`.damage-card`)** :
    - `co.css` force `height: 30px; line-height: 30px;` sur `.items-container .item`, ce qui écrase les blocs `.item.attack` multi-lignes des rencontres, et utilise des dégradés marrons/violets en dur (`#8f7656`, `#5d142b3d`, `top: 10px` sur `.target-portrait`) dans les cartes de chat `.co.chat-card.roll-card.damage-card`.
    - **Règle** : Maintenir `height: auto !important; line-height: 1.4 !important;` sur `.item.attack` et conserver les surcharges de `.co.chat-card.roll-card` dans [`styles/chat-co2.css`](./styles/chat-co2.css).
+
+---
+
+## 6. Conventions de commit & Automatisation des Releases (Release Please)
+
+Le dépôt utilise **Google Release Please** ([`.github/workflows/release.yml`](./.github/workflows/release.yml)) pour automatiser la gestion des versions, la rédaction du `CHANGELOG.md`, la mise à jour de `"version"` dans [`module.json`](./module.json), et la publication des assets `module.zip` & `module.json` sur GitHub Releases.
+
+### Règle impérative : Conventional Commits
+Tout agent ou contributeur travaillant sur le dépôt **doit obligatoirement** formater ses messages de commit selon la spécification [Conventional Commits](https://www.conventionalcommits.org/) :
+
+| Préfixe | Impact SemVer | Description | Exemple |
+|---|---|---|---|
+| `fix:` | **PATCH** (`0.1.0` → `0.1.1`) | Correction de bug ou ajustement CSS | `fix: alignement de la jauge de mana dans la sidebar` |
+| `feat:` | **MINOR** (`0.1.0` → `0.2.0`) | Nouvelle fonctionnalité ou habillage | `feat: ajout des ornements pour les fiches d'objets` |
+| `feat!:` / `fix!:` | **MAJOR** (`0.1.0` → `1.0.0`) | Changement cassant (*Breaking Change*) | `feat!: refonte complète compatible Foundry v15` |
+| `docs:` | Aucun (groupé) | Documentation (`README.md`, `AGENTS.md`) | `docs: mise à jour des instructions de release` |
+| `style:` | Aucun (groupé) | Formatage, indentation, espaces (sans impact visuel) | `style: nettoyage des espaces inutiles dans theme.css` |
+| `refactor:` | Aucun (groupé) | Restructuration de code sans modif de comportement | `refactor: modularisation des hooks ApplicationV2` |
+| `ci:` / `chore:` | Aucun (groupé) | Maintenance CI/CD ou outils de dev | `ci: mise à jour du workflow release-please` |
+
+### Cycle de publication automatisé
+1. **Pousser sur `main`** : Les commits sont poussés librement sur la branche principale sans déclencher de release intempestive.
+2. **Pull Request de Release automatique** : Release Please analyse les commits et maintient automatiquement une Pull Request intitulée `chore(main): release X.Y.Z` contenant le `CHANGELOG.md` rédigé et la montée de version de `module.json`.
+3. **Publication** : Dès que l'utilisateur ou le mainteneur clique sur **Merge pull request** sur GitHub, l'action :
+   - Tagge la version (`vX.Y.Z`).
+   - Crée la Release officielle sur GitHub.
+   - Archive et attache `module.zip` et `module.json`.
+
