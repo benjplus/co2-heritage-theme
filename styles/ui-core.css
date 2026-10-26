@@ -1,0 +1,91 @@
+/**
+ * ============================================================================
+ * INTERFACE GLOBALE FOUNDRY VTT V14 (ApplicationV2, Fenêtres, Sidebar, Hotbar)
+ * Aligné sur la maquette Thème Héritage & Grimoire (Papier Velin & Nuit Indigo Royale)
+ * ============================================================================
+ */
+
+/* Fenêtres ApplicationV2 et Window-App (V1) */
+body.co2-theme-active .co.application,
+body.co2-theme-active .window-app.co {
+  border-radius: var(--co2-radius-md);
+  box-shadow: var(--co2-shadow-window);
+  border: 1.5px solid var(--co2-border-gold);
+  transition: box-shadow var(--co2-transition-smooth);
+}
+
+/* Barre de titre de fenêtre Foundry VTT v14 (.window-header) comme dans la maquette */
+body.co2-theme-active .co.application .window-header,
+body.co2-theme-active .window-app.co .window-header {
+  background: var(--co2-bg-window-header) !important;
+  color: var(--co2-window-header-text) !important;
+  border-bottom: 2px solid var(--co2-border-gold) !important;
+  font-family: var(--co2-font-title);
+  letter-spacing: 0.06em;
+}
+
+body.co2-theme-active .co.application .window-header .window-title,
+body.co2-theme-active .window-app.co .window-header .window-title {
+  font-family: var(--co2-font-title);
+  font-weight: 700;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--co2-window-header-text) !important;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+body.co2-theme-active[data-co2-ornaments="true"] .co.application.sheet .window-header .window-title::before {
+  content: "⬡";
+  color: var(--co2-border-gold);
+  font-size: 0.95rem;
+}
+
+body.co2-theme-active .co.application .window-header button.header-control,
+body.co2-theme-active .co.application .window-header a.header-control {
+  color: var(--co2-border-gold) !important;
+  transition: color var(--co2-transition-fast), transform var(--co2-transition-fast);
+}
+
+body.co2-theme-active .co.application .window-header button.header-control:hover,
+body.co2-theme-active .co.application .window-header a.header-control:hover {
+  color: var(--co2-window-header-text) !important;
+}
+
+/* Barre latérale droite (Sidebar V14) */
+body.co2-theme-active[data-co2-style-core="true"] #sidebar,
+body.co2-theme-active[data-co2-style-core="true"] .sidebar-tab {
+  border-color: var(--co2-border-gold-subtle);
+}
+
+body.co2-theme-active[data-co2-style-core="true"] #sidebar-tabs > .item.active,
+body.co2-theme-active[data-co2-style-core="true"] #sidebar nav button.active {
+  color: var(--co2-border-gold);
+  border-color: var(--co2-border-gold);
+  box-shadow: 0 0 8px rgba(198, 159, 79, 0.4);
+}
+
+/* Barre de macros (Hotbar V14) */
+body.co2-theme-active[data-co2-style-core="true"] #hotbar .macro,
+body.co2-theme-active[data-co2-style-core="true"] #hotbar .slot {
+  border-radius: var(--co2-radius-sm);
+  border: 1px solid var(--co2-border-gold-subtle);
+  transition: transform var(--co2-transition-fast), border-color var(--co2-transition-fast), box-shadow var(--co2-transition-fast);
+}
+
+body.co2-theme-active[data-co2-style-core="true"] #hotbar .macro:hover,
+body.co2-theme-active[data-co2-style-core="true"] #hotbar .slot:hover {
+  transform: translateY(-2px);
+  border-color: var(--co2-border-gold);
+  box-shadow: 0 4px 12px rgba(198, 159, 79, 0.35);
+}
+
+/* Écran de Pause personnalisé Chroniques Oubliées */
+body.co2-theme-active[data-co2-style-core="true"] #pause figcaption {
+  font-family: var(--co2-font-display);
+  color: var(--co2-border-gold);
+  letter-spacing: 0.08em;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.9);
+}

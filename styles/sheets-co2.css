@@ -1,0 +1,1600 @@
+/**
+ * ============================================================================
+ * FEUILLES CHRONIQUES OUBLIÉES 2 (v2.3.12) — PJ (.character), PNJ (.encounter) & Objets (.item)
+ * Application intégrale de la maquette Thème Héritage & Grimoire :
+ * - Thème 2 : Papier Velin Doux & Or-Bronze (#a88948 / #f5efe2)
+ * - Thème 4 : Nuit Indigo Royale & Or-Bronze (#131230 / #cfa858)
+ * - Cadre géométrique à double filet Or-Bronze, coins à degrés (╬) et médaillons Hexagonaux (⬡)
+ * - Cartouches bicolores [ PEUPLE | ... ] et [ PROFIL | ... ]
+ * - Fanion de Niveau (NIV. / NC) en queue d'aronde (Swallowtail V-Notch Ribbon)
+ * - Bandeaux de Voies & Sections style "⬡ VOIE DE L'ARCHER | RANG 3"
+ * - Encadrés "Fiche Technique" à double filet Or
+ * - Correction intégrale des listes déroulantes (<select> / <option>) et champs Foundry VTT v14
+ * ============================================================================
+ */
+
+/* ==========================================================================
+   0. CORRECTION DES DROPDOWNS (<select> / <option>) & CHAMPS DE FORMULAIRE V14
+   ========================================================================== */
+
+/* Protège les listes déroulantes globales de Foundry VTT contre la règle non-scopée de co.css (.theme-dark select option) */
+body.co2-theme-active.theme-dark select:not(.co select) option {
+  background-color: var(--color-cool-5, #1b161c);
+  color: var(--color-light-2, #efe6d8);
+}
+
+/* Force les variables de formulaire Foundry v14 et le color-scheme natif sur toutes les fenêtres CO2 */
+body.co2-theme-active .co.application,
+body.co2-theme-active .co.application.theme-light,
+body.co2-theme-active .co.application.theme-dark,
+body.co2-theme-active.theme-light .co.application,
+body.co2-theme-active.theme-dark .co.application {
+  color-scheme: var(--co2-color-scheme, light);
+  --input-background-color: var(--co2-bg-card);
+  --input-border-color: var(--co2-border-gold);
+  --input-text-color: var(--co2-text-primary);
+  --input-placeholder-color: var(--co2-text-secondary);
+  --input-focus-outline-color: var(--co2-border-gold-strong);
+}
+
+body.co2-theme-active .co.application select,
+body.co2-theme-active .co.application input[type="text"],
+body.co2-theme-active .co.application input[type="number"],
+body.co2-theme-active .co.application textarea {
+  color-scheme: var(--co2-color-scheme, light);
+  background-color: var(--co2-bg-card) !important;
+  color: var(--co2-text-primary) !important;
+  border: 1px solid var(--co2-border-gold) !important;
+  border-radius: var(--co2-radius-sm);
+}
+
+body.co2-theme-active .co.application select.disabled,
+body.co2-theme-active .co.application select:disabled,
+body.co2-theme-active .co.application input:disabled,
+body.co2-theme-active .co.application input[readonly] {
+  background-color: var(--co2-bg-callout) !important;
+  color: var(--co2-text-primary) !important;
+  border-color: var(--co2-border-gold-subtle) !important;
+  opacity: 0.9;
+}
+
+/* Options et groupes d'options des menus déroulants (<select> <option>) */
+body.co2-theme-active .co.application select option,
+body.co2-theme-active .co.application select optgroup,
+body.co2-theme-active.theme-dark .co.application select option,
+body.co2-theme-active.theme-light .co.application select option,
+body.co2-theme-active .co.application.theme-dark select option,
+body.co2-theme-active .co.application.theme-light select option {
+  background-color: var(--co2-bg-card) !important;
+  background: var(--co2-bg-card) !important;
+  color: var(--co2-text-primary) !important;
+}
+
+/* Neutralise le halo rouge par défaut de Foundry VTT (a:hover, button:hover) dans les fenêtres CO2 */
+body.co2-theme-active .co.application a:hover,
+body.co2-theme-active .co.application button:hover,
+body.co2-theme-active .co.application .clickable:hover {
+  text-shadow: none !important;
+}
+
+/* Force un fond transparent et un texte lisible sur les .form-fields et labels de cases à cocher (ex: Dé bonus / Dé malus dans Résolutions) */
+body.co2-theme-active .co.application .form-group .form-fields,
+body.co2-theme-active .co.application .form-group-stacked .form-fields,
+body.co2-theme-active .co.application label.checkbox,
+body.co2-theme-active .co.application .resolvers-container .resolver label {
+  background: transparent !important;
+  color: var(--co2-text-primary) !important;
+}
+
+/* Dialogues de jets de compétence, d'attaque et d'édition de caractéristiques (.skill-roll, .attack-roll, .edit-abilities-dialog) */
+body.co2-theme-active .co.application.dialog .window-content {
+  background: var(--co2-bg-sheet) !important;
+  color: var(--co2-text-primary) !important;
+}
+
+/* Neutralise la règle globale .theme-dark .co h4/label/span { color: var(--co-surface) } de co.css dans tous les dialogues */
+body.co2-theme-active .co.application.dialog h4,
+body.co2-theme-active .co.application.dialog label,
+body.co2-theme-active .co.application.dialog span {
+  color: inherit;
+}
+
+/* Dialogue "Éditez vos caractéristiques" (.edit-abilities-dialog) : contraste élevé Thème 2 & Thème 4 */
+body.co2-theme-active .co.application.dialog.edit-abilities-dialog .window-content .abilities-table {
+  background: var(--co2-bg-card) !important;
+  color: var(--co2-text-primary) !important;
+  border: 2px solid var(--co2-border-gold) !important;
+  border-radius: var(--co2-radius-md);
+  box-shadow: var(--co2-shadow-card);
+  overflow: hidden;
+}
+
+/* Colonne 1 (intitulés des lignes : Répartition, Supérieure, Base, Traits & Effets, Bonus, Bonus total) */
+body.co2-theme-active .co.application.dialog.edit-abilities-dialog .window-content .abilities-table > :nth-child(-n + 6) {
+  background: var(--co2-bg-section-header) !important;
+  color: var(--co2-badge-text, #ffffff) !important;
+}
+
+body.co2-theme-active .co.application.dialog.edit-abilities-dialog .window-content .abilities-table > :nth-child(-n + 6) label,
+body.co2-theme-active .co.application.dialog.edit-abilities-dialog .window-content .abilities-table > :nth-child(-n + 6) span.title,
+body.co2-theme-active .co.application.dialog.edit-abilities-dialog .window-content .abilities-table h3.first-title {
+  color: var(--co2-badge-text, #ffffff) !important;
+  font-weight: 700;
+}
+
+/* Colonnes de caractéristiques paires (CON, PER, INT) : teinte alternée douce au lieu du marron sombre illisible de co.css */
+body.co2-theme-active .co.application.dialog.edit-abilities-dialog .window-content .abilities-table > :nth-child(14n + 1):not(:nth-child(-n + 6)),
+body.co2-theme-active .co.application.dialog.edit-abilities-dialog .window-content .abilities-table > :nth-child(14n + 2):not(:nth-child(-n + 6)),
+body.co2-theme-active .co.application.dialog.edit-abilities-dialog .window-content .abilities-table > :nth-child(14n + 3):not(:nth-child(-n + 6)),
+body.co2-theme-active .co.application.dialog.edit-abilities-dialog .window-content .abilities-table > :nth-child(14n + 4):not(:nth-child(-n + 6)),
+body.co2-theme-active .co.application.dialog.edit-abilities-dialog .window-content .abilities-table > :nth-child(14n + 5):not(:nth-child(-n + 6)),
+body.co2-theme-active .co.application.dialog.edit-abilities-dialog .window-content .abilities-table > :nth-child(14n + 6):not(:nth-child(-n + 6)),
+body.co2-theme-active .co.application.dialog.edit-abilities-dialog .window-content .abilities-table > :nth-child(14n + 14) {
+  background-color: var(--co2-bg-callout) !important;
+  color: var(--co2-text-primary) !important;
+}
+
+/* En-têtes des 7 caractéristiques (AGI, CON, FOR, PER, CHA, INT, VOL) + sous-titres complets (AGILITÉ, etc.) */
+body.co2-theme-active .co.application.dialog.edit-abilities-dialog .window-content .abilities-table h3:not(.first-title) {
+  color: var(--co2-header-text) !important;
+  font-family: var(--co2-font-title);
+  font-weight: 800;
+}
+
+body.co2-theme-active .co.application.dialog.edit-abilities-dialog .window-content .abilities-table h4 {
+  color: var(--co2-text-secondary) !important;
+  font-family: var(--co2-font-sans);
+  font-weight: 700;
+  letter-spacing: 0.03em;
+}
+
+/* Boutons "Supérieure" dans chaque colonne */
+body.co2-theme-active .co.application.dialog.edit-abilities-dialog .window-content .abilities-table button.superior {
+  background: var(--co2-bg-card) !important;
+  color: var(--co2-text-secondary) !important;
+  border: 1.5px solid var(--co2-border-gold) !important;
+  border-radius: var(--co2-radius-sm);
+  font-weight: 700;
+  transition: all var(--co2-transition-fast);
+}
+
+body.co2-theme-active .co.application.dialog.edit-abilities-dialog .window-content .abilities-table button.superior:hover {
+  border-color: var(--co2-border-gold-strong) !important;
+  color: var(--co2-text-primary) !important;
+  background: var(--co2-bg-card-hover) !important;
+}
+
+body.co2-theme-active .co.application.dialog.edit-abilities-dialog .window-content .abilities-table button.superior.selected {
+  background: var(--co2-bg-section-header) !important;
+  color: var(--co2-badge-text, #ffffff) !important;
+  border-color: var(--co2-border-gold-strong) !important;
+  box-shadow: var(--co2-shadow-elevated);
+}
+
+/* Valeurs, dropzones et ligne Bonus total (.value) sans le halo rouge flou de co.css */
+body.co2-theme-active .co.application.dialog.edit-abilities-dialog .window-content .abilities-table .cell,
+body.co2-theme-active .co.application.dialog.edit-abilities-dialog .window-content .abilities-table .dropzone {
+  color: var(--co2-text-primary) !important;
+  font-weight: 700;
+}
+
+body.co2-theme-active .co.application.dialog.edit-abilities-dialog .window-content .abilities-table .value {
+  color: var(--co2-header-text) !important;
+  text-shadow: none !important;
+  font-family: var(--co2-font-title);
+  font-weight: 800;
+}
+
+/* Encadré inférieur de sélection du mode de répartition (.abilities-type) */
+body.co2-theme-active .co.application.dialog.edit-abilities-dialog .window-content .abilities-type {
+  background: var(--co2-bg-callout) !important;
+  border: 2px solid var(--co2-border-gold) !important;
+  border-radius: var(--co2-radius-md);
+  color: var(--co2-text-primary) !important;
+}
+
+body.co2-theme-active .co.application.dialog.edit-abilities-dialog .window-content .values-informations,
+body.co2-theme-active .co.application.dialog.edit-abilities-dialog .window-content .values-informations label,
+body.co2-theme-active .co.application.dialog.edit-abilities-dialog .window-content .select-abilities-type label {
+  color: var(--co2-text-primary) !important;
+  font-weight: 600;
+}
+
+body.co2-theme-active .co.application.dialog.edit-abilities-dialog .window-content .value-pool .draggable-value {
+  background-color: var(--co2-bg-card) !important;
+  color: var(--co2-text-primary) !important;
+  border: 1.5px solid var(--co2-border-gold) !important;
+  border-radius: var(--co2-radius-sm);
+  font-weight: 800;
+  box-shadow: var(--co2-shadow-card);
+}
+
+body.co2-theme-active .co.application.dialog .field-value,
+body.co2-theme-active .co.application.dialog select,
+body.co2-theme-active .co.application.dialog input[type="text"],
+body.co2-theme-active .co.application.dialog input[type="number"] {
+  background-color: var(--co2-bg-card) !important;
+  color: var(--co2-text-primary) !important;
+  border: 1px solid var(--co2-border-gold) !important;
+  border-radius: var(--co2-radius-sm);
+}
+
+/* Sections des dialogues d'attaque et de dommages (.attack-roll & .skill-roll) */
+body.co2-theme-active .co.application.dialog.attack-roll .window-content .attack-roll-1,
+body.co2-theme-active .co.application.dialog.attack-roll .window-content .attack-roll-2,
+body.co2-theme-active .co.application.dialog.attack-roll .window-content .rollDommages,
+body.co2-theme-active .co.application.dialog.attack-roll .window-content .dommageDialog,
+body.co2-theme-active .co.application.dialog.attack-roll .window-content .tacticalTargets,
+body.co2-theme-active .co.application.dialog.attack-roll .window-content .additionalEffect,
+body.co2-theme-active .co.application.dialog.skill-roll .window-content .skill-roll-1,
+body.co2-theme-active .co.application.dialog.skill-roll .window-content .skill-roll-2,
+body.co2-theme-active .co.application.dialog.skill-roll .window-content .skill-roll-3 {
+  border-bottom: 1.5px solid var(--co2-border-gold-subtle) !important;
+  padding: 6px 4px 8px 4px !important;
+  align-items: center;
+}
+
+/* Correction des marges négatives de co.css sur les labels des dialogues d'attaque/dommages */
+body.co2-theme-active .co.application.dialog.attack-roll .window-content .form-group label,
+body.co2-theme-active .co.application.dialog.attack-roll .window-content .form-group label.near,
+body.co2-theme-active .co.application.dialog.skill-roll .window-content .form-group label,
+body.co2-theme-active .co.application.dialog.skill-roll .window-content .form-group label.near {
+  margin-bottom: 2px !important;
+  font-family: var(--co2-font-sans);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--co2-text-secondary) !important;
+}
+
+/* Icônes des dialogues d'attaque et de dommages (goutte de sang, dés, bouclier) */
+body.co2-theme-active .co.application.dialog.attack-roll .window-content .fa-solid.fa-droplet {
+  color: var(--co-chat-damages) !important;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.2));
+}
+
+body.co2-theme-active .co.application.dialog .window-content .fa-solid.fa-dice,
+body.co2-theme-active .co.application.dialog .window-content .fa-solid.fa-dice-d20,
+body.co2-theme-active .co.application.dialog .window-content .fas.fa-shield-alt {
+  color: var(--co2-border-gold) !important;
+}
+
+/* Cartes de bonus et d'états cliquables dans les dialogues d'attaque / compétence */
+body.co2-theme-active .co.application.dialog .window-content .bonus-item.flexrow,
+body.co2-theme-active .co.application.dialog.attack-roll .window-content .additionalEffect .statuses-list .status-item {
+  border: 1.5px solid var(--co2-border-gold-subtle) !important;
+  border-radius: var(--co2-radius-sm) !important;
+  background-color: var(--co2-bg-card) !important;
+  color: var(--co2-text-primary) !important;
+  padding: 5px 8px !important;
+  transition: all var(--co2-transition-fast);
+}
+
+body.co2-theme-active .co.application.dialog .window-content .bonus-item.flexrow:hover,
+body.co2-theme-active .co.application.dialog.attack-roll .window-content .additionalEffect .statuses-list .status-item:hover {
+  border-color: var(--co2-border-gold) !important;
+  background-color: var(--co2-bg-card-hover) !important;
+}
+
+body.co2-theme-active .co.application.dialog .window-content .bonus-item.flexrow.checked,
+body.co2-theme-active .co.application.dialog.attack-roll .window-content .additionalEffect .statuses-list .status-item:has(input:checked) {
+  background: var(--co2-bg-section-header) !important;
+  color: var(--co2-badge-text, #ffffff) !important;
+  border-color: var(--co2-border-gold-strong) !important;
+  box-shadow: var(--co2-shadow-elevated);
+}
+
+/* ==========================================================================
+   1. FOND GÉNÉRAL, DOUBLE CADRE GÉOMÉTRIQUE & COINS À DEGRÉS DU THÈME
+   ========================================================================== */
+body.co2-theme-active .co.application.sheet .window-content {
+  background: var(--co2-bg-sheet) !important;
+  color: var(--co2-text-primary);
+  font-family: var(--co2-font-sans);
+  position: relative;
+}
+
+body.co2-theme-active .co.application.sheet h4,
+body.co2-theme-active .co.application.sheet label,
+body.co2-theme-active .co.application.sheet span {
+  color: inherit;
+}
+
+/* Cadre ornemental injecté dans les feuilles d'acteurs (coins à degrés + médaillons ⬡) */
+body.co2-theme-active .co2-book-frame {
+  display: none;
+}
+
+body.co2-theme-active[data-co2-ornaments="true"] .co.application.sheet.actor .window-content > .co2-book-frame {
+  display: block;
+  position: absolute;
+  inset: 5px;
+  border: 2px solid var(--co2-border-gold);
+  pointer-events: none;
+  z-index: 30;
+}
+
+body.co2-theme-active[data-co2-ornaments="true"] .co.application.sheet.actor .window-content > .co2-book-frame::before {
+  content: "";
+  position: absolute;
+  inset: 3px;
+  border: 1px solid var(--co2-border-gold-subtle);
+  pointer-events: none;
+}
+
+body.co2-theme-active[data-co2-ornaments="true"] .co2-book-frame .co2-corner {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border: 2px solid var(--co2-border-gold);
+  background: var(--co2-bg-sheet-solid);
+  z-index: 31;
+}
+
+body.co2-theme-active[data-co2-ornaments="true"] .co2-book-frame .co2-corner::after {
+  content: "";
+  position: absolute;
+  inset: 2px;
+  background: var(--co2-border-gold);
+}
+
+body.co2-theme-active[data-co2-ornaments="true"] .co2-book-frame .co2-corner.tl { top: -4px; left: -4px; }
+body.co2-theme-active[data-co2-ornaments="true"] .co2-book-frame .co2-corner.tr { top: -4px; right: -4px; }
+body.co2-theme-active[data-co2-ornaments="true"] .co2-book-frame .co2-corner.bl { bottom: -4px; left: -4px; }
+body.co2-theme-active[data-co2-ornaments="true"] .co2-book-frame .co2-corner.br { bottom: -4px; right: -4px; }
+
+body.co2-theme-active[data-co2-ornaments="true"] .co2-book-frame .co2-hex-medallion {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--co2-bg-sheet-solid);
+  padding: 0 8px;
+  color: var(--co2-border-gold);
+  font-size: 12px;
+  line-height: 1;
+  letter-spacing: 3px;
+  z-index: 31;
+}
+
+body.co2-theme-active[data-co2-ornaments="true"] .co2-book-frame .co2-hex-medallion.top { top: -8px; }
+body.co2-theme-active[data-co2-ornaments="true"] .co2-book-frame .co2-hex-medallion.bottom { bottom: -8px; }
+
+/* ==========================================================================
+   2. EN-TÊTE DE PERSONNAGE (.sheet-header) : NOM, CARTOUCHES & FANION NIV.
+   ========================================================================== */
+body.co2-theme-active .co.application.sheet.actor .window-content .sheet-header {
+  background: var(--co2-bg-header-grad) !important;
+  border: none !important;
+  border-bottom: 3px double var(--co2-border-gold) !important;
+  padding: 12px 14px 10px 14px;
+  gap: 8px 12px;
+  color: var(--co2-header-text);
+  grid-template-columns: 110px minmax(0, 1fr) 205px minmax(56px, min-content);
+  min-width: 0;
+}
+
+/* Portrait encadré d'un double filet Or-Bronze */
+body.co2-theme-active .co.application.sheet.actor .window-content .sheet-header .image-container {
+  max-height: 124px;
+}
+
+body.co2-theme-active .co.application.sheet.actor .window-content .sheet-header .image-container .actor-img {
+  max-height: 116px;
+  border-radius: var(--co2-radius-sm);
+  border: 2px solid var(--co2-border-gold);
+  box-shadow: 0 0 0 2px var(--co2-bg-card), 0 0 0 3.5px var(--co2-border-gold);
+  background: var(--co2-bg-card);
+  object-fit: cover;
+  transition: transform var(--co2-transition-fast), box-shadow var(--co2-transition-fast);
+}
+
+body.co2-theme-active .co.application.sheet.actor .window-content .sheet-header .image-container .hover-icon {
+  color: var(--co2-border-gold);
+  background: var(--co2-bg-card);
+  border: 1px solid var(--co2-border-gold);
+  border-radius: 2px;
+  padding: 2px;
+}
+
+/* Nom du personnage avec double filet Or ("ACTE 1 / OÙ, QUAND, POURQUOI ?" p.5-6) */
+body.co2-theme-active .co.application.sheet.actor .window-content .sheet-header .name,
+body.co2-theme-active .co.application.sheet.actor .window-content .sheet-header .name input {
+  font-family: var(--co2-font-title);
+  font-size: 1.65rem;
+  font-weight: 800;
+  height: 50px;
+  min-width: 0;
+  color: var(--co2-header-text) !important;
+  background: transparent !important;
+  border: none !important;
+  border-bottom: 3px double var(--co2-border-gold) !important;
+  border-radius: 0 !important;
+  letter-spacing: 0.04em;
+  padding-left: 2px;
+  box-shadow: none !important;
+}
+
+/* Cartouches bicolores [ PEUPLE | ... ] et [ PROFIL | ... ] comme dans la maquette */
+body.co2-theme-active .co.application.sheet.actor .window-content .sheet-header .traits {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  min-width: 0;
+}
+
+body.co2-theme-active .co.application.sheet.actor.character .window-content .sheet-header .traits .species,
+body.co2-theme-active .co.application.sheet.actor.character .window-content .sheet-header .traits .profiles {
+  display: flex;
+  align-items: center;
+  border: 1.5px solid var(--co2-border-gold);
+  border-radius: var(--co2-radius-sm);
+  background: var(--co2-bg-card);
+  min-height: 26px;
+  overflow: hidden;
+  padding: 0 8px 0 0;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--co2-text-primary);
+  box-shadow: var(--co2-shadow-elevated);
+}
+
+body.co2-theme-active .co.application.sheet.actor.character .window-content .sheet-header .traits .item-img {
+  flex: 0 0 19px;
+  width: 19px;
+  height: 19px;
+  background-size: cover;
+  border-radius: 2px;
+  border: 1px solid var(--co2-border-gold);
+  margin-right: 5px;
+}
+
+body.co2-theme-active .co.application.sheet.actor.character .window-content .sheet-header .traits .species::before,
+body.co2-theme-active .co.application.sheet.actor.character .window-content .sheet-header .traits .profiles::before {
+  background: var(--co2-bg-section-header);
+  color: var(--co2-badge-text, #ffffff);
+  font-family: var(--co2-font-sans);
+  font-size: 0.62rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 0 6px;
+  margin-right: 6px;
+  align-self: stretch;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 52px;
+  flex-shrink: 0;
+}
+
+body.co2-theme-active .co.application.sheet.actor.character .window-content .sheet-header .traits .species::before {
+  content: "PEUPLE";
+}
+
+body.co2-theme-active .co.application.sheet.actor.character .window-content .sheet-header .traits .profiles::before {
+  content: "PROFIL";
+}
+
+/* Cartouches Catégorie / Taille des PNJ (.encounter) */
+body.co2-theme-active .co.application.sheet.actor.encounter .window-content .sheet-header .traits .trait {
+  border: 1.5px solid var(--co2-border-gold);
+  border-radius: var(--co2-radius-sm);
+  background: var(--co2-bg-card) !important;
+  color: var(--co2-text-primary) !important;
+  font-size: 0.76rem;
+  font-weight: 700;
+  padding: 2px 8px;
+  text-align: center;
+}
+
+/* Fanion NIV. / NC en queue d'aronde */
+body.co2-theme-active .co.application.sheet.actor .window-content .sheet-header .level {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 58px;
+  height: 62px;
+  background: var(--co2-bg-section-header);
+  padding: 4px 3px 10px 3px;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 85%, 0 100%);
+  border: none;
+  border-radius: var(--co2-radius-sm) var(--co2-radius-sm) 0 0;
+  align-self: center;
+  box-shadow: var(--co2-shadow-elevated);
+}
+
+body.co2-theme-active .co.application.sheet.actor .window-content .sheet-header .level label {
+  background: transparent;
+  color: var(--co2-badge-text, #ffffff) !important;
+  font-family: var(--co2-font-title);
+  font-size: 0.65rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  line-height: 1.1;
+  padding: 1px 0 2px 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+}
+
+body.co2-theme-active[data-co2-ornaments="true"] .co.application.sheet.actor .window-content .sheet-header .level label::before {
+  content: "⬡";
+  font-size: 0.62rem;
+}
+
+body.co2-theme-active .co.application.sheet.actor .window-content .sheet-header .level input,
+body.co2-theme-active .co.application.sheet.actor .window-content .sheet-header .level span {
+  font-family: var(--co2-font-title);
+  font-size: 1.3rem !important;
+  font-weight: 800;
+  width: 100% !important;
+  flex: 1;
+  height: 36px !important;
+  line-height: 32px !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--co2-text-primary) !important;
+  background: var(--co2-bg-card) !important;
+  border: none !important;
+  border-radius: 1px;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 82%, 0 100%);
+  padding-bottom: 4px;
+}
+
+/* ==========================================================================
+   3. LES 7 CARACTÉRISTIQUES (.abilities) — BOÎTES BICOLORES OR-BRONZE
+   ========================================================================== */
+body.co2-theme-active .co.application.sheet.actor .window-content .abilities {
+  border: none !important;
+  gap: 6px;
+  background: transparent;
+  padding: 2px 0 0 0;
+  margin: 0;
+  grid-template-columns: repeat(7, minmax(0, 1fr)) auto !important;
+  min-width: 0;
+}
+
+body.co2-theme-active .co.application.sheet.actor .window-content .abilities .ability {
+  border: 1.5px solid var(--co2-border-gold);
+  border-radius: var(--co2-radius-sm);
+  overflow: hidden;
+  background: var(--co2-bg-card);
+  box-shadow: var(--co2-shadow-elevated);
+  min-width: 0;
+  transition: transform var(--co2-transition-fast), border-color var(--co2-transition-fast);
+}
+
+body.co2-theme-active .co.application.sheet.actor .window-content .abilities .ability:hover {
+  transform: translateY(-1px);
+  border-color: var(--co2-border-gold-strong);
+}
+
+/* Bandeau Or-Bronze (FOR, AGI, CON, INT, PER, CHA, VOL) */
+body.co2-theme-active .co.application.sheet.actor .window-content .abilities .ability .ability-id {
+  background: var(--co2-bg-section-header) !important;
+  color: var(--co2-badge-text, #ffffff) !important;
+  font-family: var(--co2-font-title);
+  font-size: 0.74rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  line-height: 1.65;
+  position: relative;
+}
+
+/* Case inférieure avec valeur de la caractéristique */
+body.co2-theme-active .co.application.sheet.actor .window-content .abilities .ability .ability-mod {
+  border: none !important;
+  background: var(--co2-bg-card) !important;
+  color: var(--co2-text-primary) !important;
+  font-family: var(--co2-font-sans);
+  font-size: 1.25rem;
+  font-weight: 800;
+  line-height: 1.38;
+}
+
+body.co2-theme-active .co.application.sheet.actor .window-content .abilities .abilities-controls {
+  background: var(--co2-bg-section-header) !important;
+  color: var(--co2-badge-text, #ffffff) !important;
+  border: 1.5px solid var(--co2-border-gold);
+  border-radius: var(--co2-radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Masque le conteneur d'édition de caractéristiques lorsqu'il est vide (mode verrouillé) */
+body.co2-theme-active .co.application.sheet.actor .window-content .abilities .abilities-controls:empty {
+  display: none !important;
+}
+
+body.co2-theme-active .co.application.sheet.actor .window-content .abilities .abilities-controls .abilities-edit {
+  color: var(--co2-badge-text, #ffffff) !important;
+  font-size: 1rem;
+}
+
+/* ==========================================================================
+   4. BARRE LATÉRALE GAUCHE (.sheet-sidebar) — CARTES DE COMBAT OR-BRONZE
+   ========================================================================== */
+body.co2-theme-active .co.application.sheet.actor .window-content .sheet-sidebar {
+  background: var(--co2-bg-sidebar-grad) !important;
+  border-right: 2px solid var(--co2-border-gold);
+  padding: 8px 6px 8px 10px;
+}
+
+body.co2-theme-active .co.application.sheet.actor .window-content .sheet-sidebar .scrollable {
+  gap: 5px;
+  padding: 2px;
+  mask: none;
+}
+
+/* Boîtes de stats (CONTACT, DISTANCE, MAGIQUE, INIT., DEF., RD, PV, MANA, MOUVEMENT) */
+body.co2-theme-active .co.application.sheet.actor .window-content .sheet-sidebar .scrollable .sidebar-section {
+  background: var(--co2-bg-section-header) !important;
+  border: 1.5px solid var(--co2-border-gold);
+  border-radius: var(--co2-radius-sm);
+  overflow: hidden;
+  padding: 2px;
+  box-shadow: var(--co2-shadow-elevated);
+}
+
+/* Aligne symétriquement les boîtes de ressources (MANA / CHANCE / RÉCUPÉRATION) sur 3 colonnes comme VIGUEUR,
+   et étend la dernière boîte sur 6 colonnes si elle se retrouve seule sur sa ligne (:nth-child(odd)) */
+body.co2-theme-active .co.application.sheet.actor .window-content .sheet-sidebar .scrollable .sidebar-section.resource-section {
+  grid-column: auto / span 3;
+}
+
+body.co2-theme-active .co.application.sheet.actor.character .window-content .sheet-sidebar .scrollable .sidebar-section.resource-section:nth-child(odd):not(:has(~ .resource-section)) {
+  grid-column: auto / span 6;
+}
+
+body.co2-theme-active .co.application.sheet.actor .window-content .sheet-sidebar .scrollable .sidebar-section .sidebar-section-header {
+  margin: 2px;
+}
+
+body.co2-theme-active .co.application.sheet.actor .window-content .sheet-sidebar .scrollable .sidebar-section .sidebar-section-header .sidebar-label {
+  justify-content: center;
+  margin: 1px 0 2px 0;
+  color: var(--co2-badge-text, #ffffff) !important;
+}
+
+body.co2-theme-active .co.application.sheet.actor .window-content .sheet-sidebar .scrollable .sidebar-section .sidebar-section-header .sidebar-label h4 {
+  font-family: var(--co2-font-title);
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--co2-badge-text, #ffffff) !important;
+  white-space: nowrap;
+}
+
+body.co2-theme-active .co.application.sheet.actor .window-content .sheet-sidebar .scrollable .labelled-field,
+body.co2-theme-active .co.application.sheet.actor .window-content .sheet-sidebar .scrollable .sidebar-section .field {
+  border-radius: 1.5px;
+  background-color: var(--co2-bg-card) !important;
+  color: var(--co2-text-primary) !important;
+  font-size: 0.96rem;
+  font-weight: 800;
+  height: 27px;
+  padding: 2px 4px;
+}
+
+body.co2-theme-active .co.application.sheet.actor .window-content .sheet-sidebar .scrollable .labelled-field i {
+  color: var(--co2-border-gold) !important;
+  font-size: 0.8rem;
+  flex-shrink: 0;
+}
+
+/* Icône et valeur des Dommages Temporaires (DM TEMP.) dans la barre latérale */
+body.co2-theme-active .co.application.sheet.actor .window-content .sheet-sidebar .scrollable .labelled-field i.fa-heart-broken,
+body.co2-theme-active .co.application.sheet.actor.character-mini .window-content .mini-sidebar .fa-heart-broken {
+  color: var(--co-chat-damages) !important;
+}
+
+body.co2-theme-active .co.application.sheet.actor .window-content .sheet-sidebar .scrollable .sidebar-section .labelled-field input.temp-dm {
+  color: var(--co-chat-damages) !important;
+  font-weight: 800;
+}
+
+body.co2-theme-active .co.application.sheet.actor .window-content .sheet-sidebar .scrollable .sidebar-section .field input,
+body.co2-theme-active .co.application.sheet.actor .window-content .sheet-sidebar .scrollable .sidebar-section .labelled-field input {
+  background-color: transparent !important;
+  border: none !important;
+  color: var(--co2-text-primary) !important;
+  font-weight: 800;
+  min-width: 0;
+}
+
+body.co2-theme-active .co.application.sheet.actor .window-content .sheet-sidebar .scrollable .sidebar-section .field select,
+body.co2-theme-active .co.application.sheet.actor .window-content .sheet-sidebar .scrollable .sidebar-section .labelled-field select {
+  background-color: var(--co2-bg-card) !important;
+  color: var(--co2-text-primary) !important;
+  font-weight: 700;
+}
+
+body.co2-theme-active .co.application.sheet.actor .window-content .sheet-sidebar span.max,
+body.co2-theme-active .co.application.sheet.actor .window-content .sheet-sidebar span.slash {
+  color: var(--co2-text-secondary) !important;
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+
+/* Section Mouvement & États (pleine largeur 6 colonnes) */
+body.co2-theme-active .co.application.sheet.actor .window-content .sheet-sidebar .scrollable .sidebar-section.speed-section .sidebar-section-header .labelled-field {
+  background-color: var(--co2-bg-card) !important;
+  color: var(--co2-text-primary) !important;
+  padding: 2px 6px;
+  height: 24px;
+  font-size: 0.85rem;
+}
+
+body.co2-theme-active .co.application.sheet.actor .window-content .sheet-sidebar .scrollable .sidebar-section .state-modifier {
+  background: var(--co2-bg-card);
+  color: var(--co2-text-primary) !important;
+  border-radius: 1.5px;
+  margin: 0;
+  padding: 4px 8px 4px 20px;
+  font-size: 0.78rem;
+}
+
+body.co2-theme-active .co.application.sheet.actor .window-content .sheet-sidebar .state-name {
+  color: var(--co2-text-primary) !important;
+}
+
+/* ==========================================================================
+   5. LES 5 ONGLETS DE BASE (.sheet-tabs) — ÉTIQUETTES SUR DOUBLE FILET OR
+   ========================================================================== */
+body.co2-theme-active .co.application.sheet .sheet-tabs {
+  background: transparent;
+  border-bottom: 3px double var(--co2-border-gold) !important;
+  padding: 8px 10px 0 10px;
+  margin-top: 2px;
+  gap: 4px;
+  min-width: 0;
+}
+
+body.co2-theme-active .co.application.sheet .sheet-tabs [data-tab] {
+  flex: 1 1 auto !important;
+  font-family: var(--co2-font-title);
+  font-weight: 700;
+  font-size: 0.71rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  padding: 5px 8px;
+  border-radius: var(--co2-radius-sm) var(--co2-radius-sm) 0 0;
+  border: 1.5px solid var(--co2-border-gold) !important;
+  border-bottom: none !important;
+  color: var(--co2-border-gold);
+  background: var(--co2-bg-card);
+  white-space: nowrap;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  text-shadow: none !important;
+  outline: none !important;
+  transition: background-color var(--co2-transition-fast), color var(--co2-transition-fast), border-color var(--co2-transition-fast), box-shadow var(--co2-transition-fast);
+}
+
+/* Survol élégant des onglets inactifs (écrase le border: 2px dotted de co.css et le halo rouge Foundry) */
+body.co2-theme-active .co.application.sheet .sheet-tabs [data-tab]:not(.active):hover {
+  background: var(--co2-bg-card-hover) !important;
+  color: var(--co2-text-primary) !important;
+  border: 1.5px solid var(--co2-border-gold-strong) !important;
+  border-bottom: none !important;
+  box-shadow: inset 0 2px 0 var(--co2-border-gold);
+  text-shadow: none !important;
+}
+
+body.co2-theme-active .co.application.sheet .sheet-tabs [data-tab].active,
+body.co2-theme-active .co.application.sheet .sheet-tabs [data-tab].active:hover {
+  background: var(--co2-bg-section-header) !important;
+  color: var(--co2-badge-text, #ffffff) !important;
+  border: 1.5px solid var(--co2-border-gold) !important;
+  border-bottom: none !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+}
+
+/* Sous-onglets d'actions dans les fiches d'objets (.sheet.item) */
+body.co2-theme-active .co.application.sheet.item .window-content .tab[data-tab].actions .actions .sheet-tabs {
+  justify-content: flex-start !important;
+  padding: 4px 112px 0 8px !important;
+  gap: 6px !important;
+  height: 40px !important;
+  align-items: flex-end !important;
+}
+
+body.co2-theme-active .co.application.sheet.item .window-content .tab[data-tab].actions .actions .sheet-tabs [data-tab],
+body.co2-theme-active .co.application.sheet.item .window-content .tab[data-tab].actions .actions .sheet-tabs [data-tab]:hover {
+  flex: 0 0 42px !important;
+  width: 42px !important;
+  height: 34px !important;
+  padding: 3px !important;
+  border: 1.5px solid var(--co2-border-gold-subtle) !important;
+  border-bottom: none !important;
+  background: var(--co2-bg-card) !important;
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+}
+
+body.co2-theme-active .co.application.sheet.item .window-content .tab[data-tab].actions .actions .sheet-tabs [data-tab] img {
+  width: 26px !important;
+  height: 26px !important;
+  object-fit: contain;
+}
+
+body.co2-theme-active .co.application.sheet.item .window-content .tab[data-tab].actions .actions .sheet-tabs [data-tab].active,
+body.co2-theme-active .co.application.sheet.item .window-content .tab[data-tab].actions .actions .sheet-tabs [data-tab].active:hover {
+  background: var(--co2-bg-section-header) !important;
+  border-color: var(--co2-border-gold) !important;
+}
+
+body.co2-theme-active .co.application.sheet .tab[data-tab] {
+  mask: none;
+  padding: 10px 14px 14px 12px;
+  min-width: 0;
+}
+
+/* ==========================================================================
+   6. BANDEAUX HEXAGONAUX (⬡) DES VOIES & SECTIONS ("SERGENT ORC | NC 3" p.9)
+   ========================================================================== */
+body.co2-theme-active .co.application.sheet .section-container {
+  background: var(--co2-bg-card);
+  border: 1.5px solid var(--co2-border-gold) !important;
+  border-radius: var(--co2-radius-sm) !important;
+  margin-bottom: 12px;
+  padding-bottom: 4px;
+  overflow: hidden;
+  box-shadow: var(--co2-shadow-elevated);
+}
+
+body.co2-theme-active .co.application.sheet .section-container .section-header,
+body.co2-theme-active .co.application.sheet .items-container .items-container-header {
+  background: var(--co2-bg-section-header) !important;
+  color: var(--co2-badge-text, #ffffff) !important;
+  border-bottom: 1.5px solid var(--co2-border-gold);
+  border-radius: 0 !important;
+  padding: 4px 10px;
+  position: relative;
+  min-height: 30px;
+  align-items: center;
+}
+
+body.co2-theme-active .co.application.sheet .section-container .section-header h4,
+body.co2-theme-active .co.application.sheet .items-container .items-container-header h4 {
+  font-family: var(--co2-font-title);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--co2-badge-text, #ffffff) !important;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 2px 4px;
+}
+
+body.co2-theme-active .co.application.sheet .items-container .items-container-header h4 a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  color: var(--co2-badge-text, #ffffff) !important;
+}
+
+/* Médaillon Hexagonal ⬡ inspiré des bandeaux de créatures */
+body.co2-theme-active[data-co2-ornaments="true"] .co.application.sheet .section-container .section-header h4::before,
+body.co2-theme-active[data-co2-ornaments="true"] .co.application.sheet .items-container .items-container-header h4::before {
+  content: "⬡";
+  font-size: 0.92rem;
+  line-height: 1;
+  opacity: 0.95;
+  flex-shrink: 0;
+}
+
+/* Séparateur vertical "| RANG X" à droite des bandeaux de Voies (comme "| NC 3" p.9) */
+body.co2-theme-active .co.application.sheet .co2-rank-pipe {
+  margin-left: auto;
+  padding-left: 8px;
+  border-left: 1.5px solid currentColor;
+  font-family: var(--co2-font-title);
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  opacity: 0.92;
+}
+
+/* Contrôles d'en-tête de section (tri d'actions, mini-fiche) */
+body.co2-theme-active .co.application.sheet.actor.character .btn-sort-items-default,
+body.co2-theme-active .co.application.sheet.actor.character .btn-sort-items-rank,
+body.co2-theme-active .co.application.sheet.actor.character .btn-sort-items-type,
+body.co2-theme-active .co.application.sheet.actor.character .btn-sort-items-action-type,
+body.co2-theme-active .co.application.sheet.actor.character .window-content .btn-mini-sheet {
+  color: var(--co2-badge-text, #ffffff) !important;
+  opacity: 0.75;
+  transition: opacity var(--co2-transition-fast), transform var(--co2-transition-fast);
+}
+
+body.co2-theme-active .co.application.sheet.actor.character .btn-sort-items-default.active,
+body.co2-theme-active .co.application.sheet.actor.character .btn-sort-items-rank.active,
+body.co2-theme-active .co.application.sheet.actor.character .btn-sort-items-type.active,
+body.co2-theme-active .co.application.sheet.actor.character .btn-sort-items-action-type.active,
+body.co2-theme-active .co.application.sheet.actor.character .btn-sort-items-default:hover,
+body.co2-theme-active .co.application.sheet.actor.character .btn-sort-items-rank:hover,
+body.co2-theme-active .co.application.sheet.actor.character .btn-sort-items-type:hover,
+body.co2-theme-active .co.application.sheet.actor.character .btn-sort-items-action-type:hover,
+body.co2-theme-active .co.application.sheet.actor.character .window-content .btn-mini-sheet:hover {
+  opacity: 1;
+  transform: scale(1.08);
+}
+
+/* ==========================================================================
+   7. GRILLE DES VOIES (.path-grid), ACTIONS & INVENTAIRE
+   ========================================================================== */
+body.co2-theme-active .co.application.sheet .path-grid {
+  gap: 10px;
+  padding: 4px 0;
+}
+
+body.co2-theme-active .co.application.sheet .path-grid .items-container,
+body.co2-theme-active .co.application.sheet .inventory .items-container {
+  background: var(--co2-bg-card);
+  border: 1.5px solid var(--co2-border-gold);
+  border-radius: var(--co2-radius-sm);
+  overflow: hidden;
+  padding: 0;
+  box-shadow: var(--co2-shadow-elevated);
+}
+
+body.co2-theme-active .co.application.sheet .items-container .item-list {
+  padding: 0;
+}
+
+/* --- Alignement de l'onglet Voies & Capacités --- */
+/* Colonnes de voies égales, non étirées, sans débordement horizontal */
+body.co2-theme-active .co.application.sheet .path-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: start;
+  column-gap: 10px;
+}
+
+body.co2-theme-active .co.application.sheet .path-grid .items-container {
+  min-width: 0;
+  margin-bottom: 0;
+}
+
+/* Bandeau de voie : titre tronqué proprement, contrôles alignés à droite */
+body.co2-theme-active .co.application.sheet .items-container .items-container-header {
+  height: auto;
+  min-height: 34px;
+  line-height: 1.2;
+  gap: 6px;
+}
+
+body.co2-theme-active .co.application.sheet .items-container .items-container-header h4.item-name {
+  min-width: 0;
+  flex: 1 1 auto;
+  margin: 0;
+}
+
+body.co2-theme-active .co.application.sheet .items-container .items-container-header h4 a {
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+body.co2-theme-active .co.application.sheet .items-container .items-container-header .item-controls-3 {
+  flex: 0 0 auto;
+  width: auto;
+  min-width: 0;
+  align-items: center;
+}
+
+/* Lignes de capacités : hauteur uniforme, tout centré verticalement */
+body.co2-theme-active .co.application.sheet .items-container .item-list > .item:not(.items-container-header) {
+  min-height: 36px;
+  height: auto;
+  line-height: 1.2;
+  gap: 0;
+  align-items: center;
+}
+
+body.co2-theme-active .co.application.sheet .items-container .item-list > .item .item-detail.rank {
+  align-self: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+body.co2-theme-active .co.application.sheet .items-container .item-list > .item .item-name {
+  flex: 1 1 0;
+  width: auto;
+  min-width: 0;
+  align-items: center;
+  gap: 6px;
+}
+
+body.co2-theme-active .co.application.sheet .items-container .item-list > .item .item-name h4 {
+  margin: 0;
+  min-width: 0;
+  line-height: 1.2;
+}
+
+body.co2-theme-active .co.application.sheet .items-container .item-list > .item .item-name .item-img {
+  flex: 0 0 26px;
+  width: 26px;
+  height: 26px;
+  border: 1px solid var(--co2-border-gold-subtle);
+  border-radius: var(--co2-radius-sm);
+  background-size: cover;
+  background-position: center;
+}
+
+/* Largeur fixe des contrôles (2 ou 3 icônes) pour aligner les colonnes d'icônes */
+body.co2-theme-active .co.application.sheet .items-container .item-list .item-controls-2,
+body.co2-theme-active .co.application.sheet .items-container .item-list .item-controls-3 {
+  flex: 0 0 66px;
+  width: 66px;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+/* Capacités liées (zone de dépôt) alignées sous le nom de la capacité parente (padding 8 + rang 21 + marge 6) */
+body.co2-theme-active .co.application.sheet.actor.character .window-content .dropzone {
+  margin-left: 35px;
+}
+
+body.co2-theme-active .co.application.sheet.actor.character .window-content .no-path .dropzone {
+  margin-left: 8px;
+}
+
+/* Lignes de rangs et d'objets séparées par un filet bronze continu */
+body.co2-theme-active .co.application.sheet .items-container .item:not(.items-container-header) {
+  padding: 0 8px;
+  border-bottom: 1px solid var(--co2-border-gold-subtle);
+  align-items: center;
+  transition: background-color var(--co2-transition-fast);
+}
+
+body.co2-theme-active .co.application.sheet .items-container .item:not(.items-container-header):hover {
+  background: var(--co2-bg-card-hover) !important;
+}
+
+body.co2-theme-active .co.application.sheet .items-container .item .item-name h4 {
+  font-family: var(--co2-font-sans);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--co2-text-primary);
+}
+
+/* Badge carré Or-Bronze pour le numéro de Rang (1, 2, 3...) dans l'onglet Voies */
+body.co2-theme-active .co.application.sheet .items-container .item-detail.rank {
+  flex: 0 0 21px;
+  width: 21px;
+  height: 21px;
+  line-height: 21px;
+  margin-right: 6px;
+  border-right: none;
+  border-radius: 2px;
+  background: var(--co2-border-gold);
+  color: var(--co2-badge-text, #ffffff) !important;
+  font-family: var(--co2-font-title);
+  font-size: 0.76rem;
+  font-weight: 800;
+  text-align: center;
+}
+
+body.co2-theme-active .co.application.sheet .items-container .item-detail {
+  border-right: 1px solid var(--co2-border-gold-subtle);
+  font-size: 0.82rem;
+}
+
+/* Badges de type d'action (A, M, L, G) dans l'onglet Actions */
+body.co2-theme-active .co.application.sheet .actions-container .actionRow {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+body.co2-theme-active .co.application.sheet .actions-container .actionColumn:first-child {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 20px;
+  height: 19px;
+  padding: 0 5px;
+  border: 1px solid var(--co2-border-gold);
+  border-radius: 2px;
+  font-family: var(--co2-font-title);
+  font-size: 0.68rem;
+  font-weight: 800;
+  color: var(--co2-border-gold);
+  background: var(--co2-bg-callout);
+}
+
+/* Barre des Richesses (PC, PA, PO, PP) dans l'onglet Inventaire */
+body.co2-theme-active .co.application.sheet .currency-row {
+  padding: 8px 12px;
+  gap: 16px;
+  background: var(--co2-bg-callout);
+}
+
+body.co2-theme-active .co.application.sheet .currency-row .current {
+  background: var(--co2-bg-card) !important;
+  color: var(--co2-text-primary) !important;
+  border: 1.5px solid var(--co2-border-gold) !important;
+  border-radius: var(--co2-radius-sm);
+  box-shadow: none !important;
+  height: 24px;
+  font-weight: 800;
+}
+
+/* Boutons et lignes d'Attaques & Dommages (.attack, .attack-button, .damage-button) */
+body.co2-theme-active .co.application.sheet .items-container .item.attack,
+body.co2-theme-active .co.application.sheet .item-list .item.attack,
+body.co2-theme-active .co.application.sheet.actor.encounter li.item.attack {
+  height: auto !important;
+  line-height: 1.4 !important;
+  align-items: stretch !important;
+  padding: 8px 10px !important;
+  margin: 6px 8px !important;
+  background: var(--co2-bg-card);
+  border: 1px solid var(--co2-border-gold-subtle) !important;
+  border-left: 3px solid var(--co2-border-gold) !important;
+  border-radius: var(--co2-radius-sm);
+  box-shadow: var(--co2-shadow-elevated);
+  gap: 4px;
+}
+
+body.co2-theme-active .co.application.sheet .items-container .attack .attack-header,
+body.co2-theme-active .co.application.sheet .item-list .attack .attack-header {
+  align-items: center;
+  border-bottom: 1px dashed var(--co2-border-gold-subtle);
+  padding-bottom: 4px;
+  margin-bottom: 2px;
+}
+
+body.co2-theme-active .co.application.sheet .items-container .attack .attack-name,
+body.co2-theme-active .co.application.sheet .item-list .attack .attack-name {
+  font-family: var(--co2-font-sans);
+  font-size: 0.92rem !important;
+  font-weight: 600 !important;
+  color: var(--co2-text-primary);
+  gap: 6px;
+  align-items: baseline;
+}
+
+body.co2-theme-active .co.application.sheet .items-container .attack .attack-name > span:first-of-type strong,
+body.co2-theme-active .co.application.sheet .item-list .attack .attack-name > span:first-of-type strong {
+  font-family: var(--co2-font-title);
+  font-size: 0.96rem;
+  font-weight: 800;
+  color: var(--co2-text-primary);
+}
+
+/* Badge "DM" dans l'en-tête d'attaque des fiches PNJ / Rencontres */
+body.co2-theme-active .co.application.sheet .items-container .attack .attack-name > strong,
+body.co2-theme-active .co.application.sheet .item-list .attack .attack-name > strong {
+  display: inline-flex;
+  align-items: center;
+  padding: 0 5px;
+  height: 18px;
+  border-radius: 2px;
+  background: color-mix(in srgb, var(--co-chat-damages) 14%, var(--co2-bg-callout));
+  border: 1px solid var(--co-chat-damages);
+  color: var(--co-chat-damages);
+  font-family: var(--co2-font-title);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+}
+
+body.co2-theme-active .co.application.sheet .items-container .attack .attack-body,
+body.co2-theme-active .co.application.sheet .item-list .attack .attack-body {
+  padding-top: 4px;
+  gap: 5px;
+}
+
+body.co2-theme-active .co.application.sheet .items-container .attack .attack-body .flexrow,
+body.co2-theme-active .co.application.sheet .item-list .attack .attack-body .flexrow {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px !important;
+  width: 100%;
+}
+
+body.co2-theme-active .co.application.sheet .items-container .attack .attack-body .sub-section,
+body.co2-theme-active .co.application.sheet .item-list .attack .attack-body .sub-section {
+  flex: 0 0 auto !important;
+}
+
+/* Bouton Jet d'Attaque [ Attaque +X ] — Style Or-Bronze */
+body.co2-theme-active .co.application.sheet .items-container .attack .attack-body button,
+body.co2-theme-active .co.application.sheet .item-list .attack .attack-body button,
+body.co2-theme-active .co.application.sheet .items-container .attack .attack-body .attack-button,
+body.co2-theme-active .co.application.sheet .item-list .attack .attack-body .attack-button {
+  background: var(--co2-bg-callout) !important;
+  border: 1.5px solid var(--co2-border-gold) !important;
+  border-radius: var(--co2-radius-sm);
+  color: var(--co2-text-primary) !important;
+  box-shadow: none !important;
+  font-family: var(--co2-font-sans);
+  font-size: 0.78rem !important;
+  font-weight: 700;
+  padding: 2px 10px !important;
+  height: 24px !important;
+  line-height: 20px !important;
+  transition: all var(--co2-transition-fast);
+}
+
+body.co2-theme-active .co.application.sheet .items-container .attack .attack-body button:hover,
+body.co2-theme-active .co.application.sheet .item-list .attack .attack-body button:hover,
+body.co2-theme-active .co.application.sheet .items-container .attack .attack-body .attack-button:hover,
+body.co2-theme-active .co.application.sheet .item-list .attack .attack-body .attack-button:hover {
+  background: var(--co2-bg-section-header) !important;
+  color: var(--co2-badge-text, #ffffff) !important;
+  border-color: var(--co2-border-gold-strong) !important;
+}
+
+/* Bouton Jet de Dommages [ Dommages Xd6+Y ] — Style Cramoisi & Bronze */
+body.co2-theme-active .co.application.sheet .items-container .attack .attack-body .damage-button,
+body.co2-theme-active .co.application.sheet .item-list .attack .attack-body .damage-button,
+body.co2-theme-active .co.application.sheet .items-container .attack .attack-body .critical-button,
+body.co2-theme-active .co.application.sheet .item-list .attack .attack-body .critical-button {
+  background: color-mix(in srgb, var(--co-chat-damages) 12%, var(--co2-bg-card)) !important;
+  border: 1.5px solid var(--co-chat-damages) !important;
+  color: var(--co-chat-damages) !important;
+}
+
+body.co2-theme-active .co.application.sheet .items-container .attack .attack-body .damage-button:hover,
+body.co2-theme-active .co.application.sheet .item-list .attack .attack-body .damage-button:hover,
+body.co2-theme-active .co.application.sheet .items-container .attack .attack-body .critical-button:hover,
+body.co2-theme-active .co.application.sheet .item-list .attack .attack-body .critical-button:hover {
+  background: var(--co-chat-damages) !important;
+  border-color: var(--co-chat-damages) !important;
+  color: #ffffff !important;
+}
+
+/* Description d'attaque sans masque ni barre de défilement forcée */
+body.co2-theme-active .co.application.sheet.actor.encounter .window-content .attack-detail {
+  mask: none !important;
+  overflow-y: auto !important;
+  white-space: normal !important;
+  font-size: 0.82rem;
+  color: var(--co2-text-secondary);
+}
+
+/* Icônes de déclenchement d'Attaque & Dommages dans l'onglet Actions des PJ / PNJ */
+body.co2-theme-active .co.application.sheet .items-container .item-controls-3 a.item-control i[data-action="toggleAction"] {
+  transition: transform var(--co2-transition-fast), color var(--co2-transition-fast);
+}
+
+body.co2-theme-active .co.application.sheet .items-container .item-controls-3 a.item-control i[data-type="damage"] {
+  color: var(--co-chat-damages) !important;
+}
+
+body.co2-theme-active .co.application.sheet .items-container .item-controls-3 a.item-control:hover i {
+  transform: scale(1.15);
+}
+
+/* ==========================================================================
+   8. BIOGRAPHIE & PROPRIÉTÉS PNJ — ENCADRÉS "FICHE TECHNIQUE"
+   ========================================================================== */
+body.co2-theme-active .co.application.sheet .tab[data-tab="biography"] h4.form-header {
+  background: var(--co2-bg-section-header);
+  color: var(--co2-badge-text, #ffffff) !important;
+  font-family: var(--co2-font-title);
+  font-size: 0.78rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 5px 10px;
+  margin: 10px 0 6px 0;
+  border-radius: var(--co2-radius-sm);
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+body.co2-theme-active[data-co2-ornaments="true"] .co.application.sheet .tab[data-tab="biography"] h4.form-header::before {
+  content: "⬡";
+  font-size: 0.9rem;
+}
+
+body.co2-theme-active[data-co2-ornaments="true"] .co.application.sheet .tab[data-tab="biography"] .notes-section,
+body.co2-theme-active[data-co2-ornaments="true"] .co.application.sheet.actor.encounter .properties .notes {
+  background: var(--co2-bg-callout);
+  border-top: 3px double var(--co2-border-gold);
+  border-bottom: 3px double var(--co2-border-gold);
+  border-left: 1px solid var(--co2-border-gold-subtle);
+  border-right: 1px solid var(--co2-border-gold-subtle);
+  padding: 10px 14px;
+  margin-bottom: 10px;
+  border-radius: var(--co2-radius-sm);
+  position: relative;
+}
+
+/* Notifications XP dans l'onglet Voies */
+body.co2-theme-active .co.application.sheet .paths .notification.permanent {
+  background: var(--co2-bg-callout);
+  color: var(--co2-text-primary);
+  border: 1.5px solid var(--co2-border-gold);
+  border-radius: var(--co2-radius-sm);
+  font-weight: 600;
+}
+
+/* ==========================================================================
+   9. FICHES D'OBJETS (.co.application.sheet.item) — ÉQUIPEMENT, CAPACITÉ, VOIE, PROFIL...
+   ========================================================================== */
+
+/* Réinitialisation du décalage négatif de co.css */
+body.co2-theme-active .co.application.sheet.item .window-content {
+  padding: 0 !important;
+  margin-top: 0 !important;
+}
+
+/* En-tête de fiche d'objet (.sheet-header) : bandeau horizontal propre */
+body.co2-theme-active .co.application.sheet.item .window-content .sheet-header {
+  background: var(--co2-bg-header-grad) !important;
+  border-bottom: 3px double var(--co2-border-gold) !important;
+  padding: 10px 14px !important;
+  min-height: 90px !important;
+  max-height: none !important;
+  display: grid !important;
+  grid-template-columns: 74px minmax(0, 1fr) auto !important;
+  grid-template-rows: auto !important;
+  grid-template-areas: "img name adjustment" !important;
+  align-items: center !important;
+  gap: 12px !important;
+  overflow: visible !important;
+}
+
+body.co2-theme-active .co.application.sheet.item .window-content .sheet-header img {
+  width: 74px !important;
+  height: 74px !important;
+  object-fit: cover;
+  border-radius: var(--co2-radius-sm);
+  border: 2px solid var(--co2-border-gold);
+  box-shadow: 0 0 0 2px var(--co2-bg-card), 0 0 0 3.5px var(--co2-border-gold);
+  background: var(--co2-bg-card);
+}
+
+body.co2-theme-active .co.application.sheet.item .window-content .sheet-header .name,
+body.co2-theme-active .co.application.sheet.item .window-content .sheet-header .name input[type="text"] {
+  font-family: var(--co2-font-title);
+  font-size: 1.35rem !important;
+  font-weight: 800;
+  height: 38px !important;
+  color: var(--co2-header-text) !important;
+  background: transparent !important;
+  border: none !important;
+  border-bottom: 2px solid var(--co2-border-gold-subtle) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  padding: 0 4px !important;
+}
+
+/* Cartouche de catégorie d'objet ("ÉQUIPEMENT", "CAPACITÉ", "VOIE"...) en haut à droite
+   Remplace le bloc gris de co.css qui ressemblait à un bouton désactivé */
+body.co2-theme-active .co.application.sheet.item .window-content .sheet-header .adjustment-select {
+  margin: 0 !important;
+  align-items: center;
+}
+
+body.co2-theme-active .co.application.sheet.item .window-content .sheet-header .trait {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: var(--co2-bg-section-header) !important;
+  color: var(--co2-badge-text, #ffffff) !important;
+  border: 1.5px solid var(--co2-border-gold-strong) !important;
+  border-radius: var(--co2-radius-sm);
+  font-family: var(--co2-font-title);
+  font-size: 0.68rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin: 0 !important;
+  padding: 4px 10px !important;
+  box-shadow: var(--co2-shadow-elevated);
+  user-select: none;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+body.co2-theme-active[data-co2-ornaments="true"] .co.application.sheet.item .window-content .sheet-header .trait::before {
+  content: "⬡";
+  font-size: 0.72rem;
+  line-height: 1;
+}
+
+/* Onglets principaux des fiches d'objets : pleine largeur, alignés sur les marges du contenu comme la fiche PJ */
+body.co2-theme-active .co.application.sheet.item .window-content > .sheet-tabs {
+  padding: 6px 14px 0 14px !important;
+  margin-top: 2px !important;
+  border-bottom: 3px double var(--co2-border-gold) !important;
+  position: relative;
+  z-index: 5;
+  display: flex !important;
+  width: 100% !important;
+  gap: 5px !important;
+}
+
+body.co2-theme-active .co.application.sheet.item .window-content > .sheet-tabs [data-tab] {
+  flex: 1 1 auto !important;
+  min-width: 0 !important;
+  text-align: center !important;
+}
+
+/* Contenu des onglets des fiches d'objets : aligné sur les 14px de marge des onglets */
+body.co2-theme-active .co.application.sheet.item .window-content .tab[data-tab] {
+  padding: 12px 14px 14px 14px !important;
+}
+
+body.co2-theme-active .co.application.sheet.item .window-content .half-panel {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+/* Correction du bug de co.css (ligne 1880) où .tab[data-tab].actions .action-button
+   faisait flotter le bouton .file-picker en position: absolute en haut à droite ! */
+body.co2-theme-active .co.application.sheet.item .window-content .tab[data-tab].actions > .action-button[data-action="addAction"] {
+  position: absolute !important;
+  top: 8px !important;
+  right: 12px !important;
+  width: auto !important;
+  min-width: 92px;
+  height: 28px !important;
+  padding: 0 10px !important;
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  background: var(--co2-bg-section-header) !important;
+  color: var(--co2-badge-text, #ffffff) !important;
+  border: 1.5px solid var(--co2-border-gold-strong) !important;
+  border-radius: var(--co2-radius-sm);
+  font-family: var(--co2-font-title);
+  font-size: 0.72rem !important;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  box-shadow: var(--co2-shadow-elevated);
+  z-index: 10;
+  cursor: pointer;
+}
+
+body.co2-theme-active .co.application.sheet.item .window-content .tab[data-tab].actions > .action-button[data-action="addAction"]:hover {
+  filter: brightness(1.08);
+}
+
+/* Remet le bouton .action-button.file-picker à sa place normale dans la ligne "Icône" */
+body.co2-theme-active .co.application.sheet.item .window-content .tab[data-tab].actions .action-button.file-picker {
+  position: static !important;
+  top: auto !important;
+  right: auto !important;
+  width: 28px !important;
+  height: 26px !important;
+  flex: 0 0 28px !important;
+  margin: 0 0 0 4px !important;
+  padding: 0 !important;
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  background: var(--co2-bg-callout) !important;
+  color: var(--co2-border-gold) !important;
+  border: 1px solid var(--co2-border-gold) !important;
+  border-radius: var(--co2-radius-sm);
+  cursor: pointer;
+}
+
+body.co2-theme-active .co.application.sheet.item .window-content .tab[data-tab].actions .action-button.file-picker:hover:not(:disabled) {
+  background: var(--co2-bg-section-header) !important;
+  color: var(--co2-badge-text, #ffffff) !important;
+}
+
+/* Masque le bouton parcourir lorsqu'on est en mode Lecture verrouillé */
+body.co2-theme-active .co.application.sheet.item .window-content .tab[data-tab].actions .action-button.file-picker:disabled {
+  display: none !important;
+}
+
+/* Boutons de suppression (corbeille) dans les fiches d'objets */
+body.co2-theme-active .co.application.sheet.item .window-content button[data-action="deleteAction"],
+body.co2-theme-active .co.application.sheet.item .window-content button[data-action="deleteCondition"],
+body.co2-theme-active .co.application.sheet.item .window-content button[data-action="deleteModifier"],
+body.co2-theme-active .co.application.sheet.item .window-content button[data-action="deleteResolver"],
+body.co2-theme-active .co.application.sheet.item .window-content button[data-action="deleteItem"] {
+  width: 28px !important;
+  height: 26px !important;
+  flex: 0 0 28px !important;
+  margin: 0 0 0 4px !important;
+  padding: 0 !important;
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  background: var(--co2-bg-callout) !important;
+  color: var(--co-chat-damages) !important;
+  border: 1px solid var(--co2-border-gold-subtle) !important;
+  border-radius: var(--co2-radius-sm);
+  cursor: pointer;
+  transition: all var(--co2-transition-fast);
+}
+
+body.co2-theme-active .co.application.sheet.item .window-content button[data-action="deleteAction"]:hover:not(:disabled),
+body.co2-theme-active .co.application.sheet.item .window-content button[data-action="deleteCondition"]:hover:not(:disabled),
+body.co2-theme-active .co.application.sheet.item .window-content button[data-action="deleteModifier"]:hover:not(:disabled),
+body.co2-theme-active .co.application.sheet.item .window-content button[data-action="deleteResolver"]:hover:not(:disabled),
+body.co2-theme-active .co.application.sheet.item .window-content button[data-action="deleteItem"]:hover:not(:disabled) {
+  background: var(--co-chat-damages) !important;
+  border-color: var(--co-chat-damages) !important;
+  color: #ffffff !important;
+}
+
+body.co2-theme-active .co.application.sheet.item .window-content button[data-action="deleteAction"]:disabled {
+  display: none !important;
+}
+
+body.co2-theme-active .co.application.sheet.item .window-content .tab[data-tab].actions .action-icon {
+  width: 26px;
+  height: 26px;
+  flex: 0 0 26px;
+  border-radius: var(--co2-radius-sm);
+  border: 1px solid var(--co2-border-gold);
+  margin-right: 4px;
+  cursor: pointer;
+}
+
+/* Fieldsets, Légendes & Bandeaux (.form-header) des fiches d'objets */
+body.co2-theme-active .co.application.sheet.item .window-content fieldset {
+  background: var(--co2-bg-card);
+  border: 1.5px solid var(--co2-border-gold-subtle) !important;
+  border-radius: var(--co2-radius-sm);
+  padding: 8px 12px 10px 12px;
+  margin-bottom: 10px;
+  box-shadow: var(--co2-shadow-elevated);
+}
+
+body.co2-theme-active .co.application.sheet.item .window-content legend {
+  font-family: var(--co2-font-title);
+  font-size: 0.78rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--co2-border-gold) !important;
+  padding: 0 8px;
+}
+
+body.co2-theme-active .co.application.sheet.item .window-content h4.form-header {
+  background: var(--co2-bg-section-header) !important;
+  color: var(--co2-badge-text, #ffffff) !important;
+  font-family: var(--co2-font-title);
+  font-size: 0.76rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 5px 10px !important;
+  border-radius: var(--co2-radius-sm) var(--co2-radius-sm) 0 0 !important;
+  align-items: center;
+  margin-top: 8px;
+}
+
+body.co2-theme-active .co.application.sheet.item .window-content h4.form-header a {
+  color: var(--co2-badge-text, #ffffff) !important;
+}
+
+/* Mode compact optionnel */
+body.co2-theme-active[data-co2-compact="true"] .co.application.sheet .items-container .item {
+  height: 25px;
+  line-height: 25px;
+}

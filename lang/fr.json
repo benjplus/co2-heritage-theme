@@ -1,0 +1,31 @@
+{
+  "CO2THEME": {
+    "Settings": {
+      "EnableTheme": {
+        "Name": "Activer le thème Héritage & Grimoire",
+        "Hint": "Active l'habillage visuel Héritage & Grimoire pour votre compte. Si vous décochez cette case, vous conservez l'affichage et les couleurs de base du système sans affecter les autres joueurs."
+      },
+      "Preset": {
+        "Name": "Ambiance visuelle (Héritage & Grimoire)",
+        "Hint": "Choisissez entre les deux chartes : Papier Velin Doux ou Nuit Indigo Royale.",
+        "Choices": {
+          "auto": "Automatique (suit le thème clair/sombre de Foundry)",
+          "theme-2-vellum-2024": "Thème Clair — Papier Velin Doux & Or-Bronze",
+          "theme-4-indigo-night-2024": "Thème Sombre — Nuit Indigo Royale & Or-Bronze"
+        }
+      },
+      "StyleCoreUI": {
+        "Name": "Styliser l'interface globale de Foundry VTT",
+        "Hint": "Applique le thème également à la barre latérale, au chat, à la barre de macros et aux contrôles de scène."
+      },
+      "Ornaments": {
+        "Name": "Ornements et bordures (Hexagones ⬡, Fanion NIV. & Double Filet Or)",
+        "Hint": "Ajoute les médaillons hexagonaux ⬡, le fanion de niveau en queue d'aronde et le double cadre or-bronze géométrique sur les feuilles."
+      },
+      "CompactMode": {
+        "Name": "Mode compact pour les feuilles",
+        "Hint": "Réduit légèrement les espacements internes pour afficher davantage de voies et d'équipements sans défilement."
+      }
+    }
+  }
+}

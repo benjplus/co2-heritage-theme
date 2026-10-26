@@ -1,0 +1,189 @@
+/**
+ * ============================================================================
+ * VARIABLES & PALETTES DU THÈME HÉRITAGE & GRIMOIRE
+ * - Thème 2 : Papier Velin Doux & Or-Bronze (#a88948 / #f5efe2)
+ * - Thème 4 : Nuit Indigo Royale & Or-Bronze (#131230 / #cfa858)
+ * ============================================================================
+ */
+
+:root,
+body.co2-theme-active {
+  /* Typographie */
+  --co2-font-title: "Cinzel", "Modesto Condensed", Georgia, serif;
+  --co2-font-display: "Cinzel Decorative", "Cinzel", serif;
+  --co2-font-serif: "Crimson Pro", Georgia, serif;
+  --co2-font-sans: "Plus Jakarta Sans", var(--font-sans, sans-serif);
+
+  /* Rayons et transitions */
+  --co2-radius-sm: 2px;
+  --co2-radius-md: 4px;
+  --co2-radius-lg: 6px;
+  --co2-transition-fast: 150ms cubic-bezier(0.22, 1, 0.36, 1);
+  --co2-transition-smooth: 240ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ==========================================================================
+   THÈME CLAIR : PAPIER VELIN DOUX & OR-BRONZE (#a88948)
+   ========================================================================== */
+body.co2-theme-active .co2-themed-window[data-co2-theme-preset="theme-2-vellum-2024"],
+body.co2-theme-active[data-co2-theme-preset="theme-2-vellum-2024"],
+body.co2-theme-active:not([data-co2-theme-preset]) {
+  --co2-color-scheme: light;
+  --co-sheet-accent: #f5efe2;
+  --co-sheet-accent-alt: #a88948;
+  --co-surface: #fbf9f4;
+  --co-encounter-accent: #efe5d2;
+  --co-window-content: #f5efe2;
+  --co-text-light: #fffdf9;
+  --co-text-dark: #252019;
+  --co-green: #3f6e36;
+  --co-grey: #b5a995;
+  --co-warning: #b36b22;
+
+  /* Charte monochrome Or-Bronze */
+  --co-stat-attack: #a88948;
+  --co-stat-initiative: #a88948;
+  --co-stat-defense: #a88948;
+  --co-stat-health: #a88948;
+  --co-stat-damages: #876b30;
+  --co-stat-resource: #a88948;
+
+  /* Dialogues de jets (Compétence / Attaque) */
+  --co-dialog-skill-bg: #f5efe2;
+  --co-dialog-skill-accent: #876b30;
+  --co-dialog-skill-highlight: #876b30;
+  --co-dialog-attack-bg: #f5efe2;
+  --co-dialog-attack-accent: #876b30;
+  --co-dialog-attack-surface: #876b30;
+  --co-dialog-overlay: #fbf9f4;
+  --co-dialog-muted: #fffdf9;
+
+  /* Cartes de Chat harmonisées Or-Bronze & Encre */
+  --co-chat-skill: #876b30;
+  --co-chat-attack: #8f3a24;
+  --co-chat-damages: #992626;
+  --co-chat-heal: #3f6e36;
+  --co-chat-rest: #687d31;
+  --co-chat-save: #593c6b;
+  --co-chat-item: #876b30;
+  --co-chat-shadow: rgba(168, 137, 72, 0.25);
+
+  /* Couleurs d'objets harmonisées bronze/or */
+  --co-item-capacity-dark: #876b30;
+  --co-item-capacity-light: #a88948;
+  --co-item-equipment-dark: #876b30;
+  --co-item-equipment-light: #a88948;
+  --co-item-container-dark: #876b30;
+  --co-item-container-light: #a88948;
+  --co-item-feature-dark: #876b30;
+  --co-item-feature-light: #a88948;
+  --co-item-path-dark: #876b30;
+  --co-item-path-light: #a88948;
+  --co-item-profile-dark: #876b30;
+  --co-item-profile-light: #a88948;
+  --co-item-attack-dark: #876b30;
+  --co-item-attack-light: #a88948;
+
+  /* Tokens de structure Papier Velin */
+  --co2-bg-window-header: linear-gradient(90deg, #211c15 0%, #332a1f 50%, #211c15 100%);
+  --co2-window-header-text: #f3ead8;
+  --co2-bg-sheet: radial-gradient(ellipse at 50% 0%, #faf6ed 0%, #f1e8d6 100%);
+  --co2-bg-sheet-solid: #f5efe2;
+  --co2-bg-header-grad: linear-gradient(180deg, rgba(251, 249, 244, 0.92) 0%, rgba(242, 233, 214, 0.68) 100%);
+  --co2-bg-sidebar-grad: linear-gradient(180deg, #efe7d6 0%, #e7dcc6 100%);
+  --co2-bg-section-header: linear-gradient(90deg, #876b30 0%, #a88948 60%, #927437 100%);
+  --co2-bg-card: #fbf9f4;
+  --co2-bg-card-hover: #f2ead9;
+  --co2-bg-callout: #efe6d4;
+  --co2-border-gold: #a88948;
+  --co2-border-gold-strong: #876b30;
+  --co2-border-gold-subtle: #d8ccb4;
+  --co2-text-primary: #252019;
+  --co2-text-secondary: #766956;
+  --co2-header-text: #252019;
+  --co2-badge-text: #ffffff;
+  --co2-shadow-elevated: 0 2px 8px rgba(135, 107, 48, 0.12);
+  --co2-shadow-window: 0 18px 48px rgba(20, 15, 8, 0.45), 0 0 0 1px #a88948;
+}
+
+/* ==========================================================================
+   THÈME 4 : NUIT INDIGO ROYALE & OR-BRONZE (#131230 / #cfa858)
+      ========================================================================== */
+body.co2-theme-active .co2-themed-window[data-co2-theme-preset="theme-4-indigo-night-2024"],
+body.co2-theme-active[data-co2-theme-preset="theme-4-indigo-night-2024"] {
+  --co2-color-scheme: dark;
+  --co-sheet-accent: #131230;
+  --co-sheet-accent-alt: #b89143;
+  --co-surface: #1b1a3e;
+  --co-encounter-accent: #221b47;
+  --co-window-content: #131230;
+  --co-text-light: #f3eee2;
+  --co-text-dark: #f3eee2;
+  --co-green: #48bb78;
+  --co-grey: #6b6a94;
+  --co-warning: #dd8b2a;
+
+  /* Boîtes de stats Or-Bronze sur fond Nuit Indigo */
+  --co-stat-attack: #b89143;
+  --co-stat-initiative: #b89143;
+  --co-stat-defense: #b89143;
+  --co-stat-health: #b89143;
+  --co-stat-damages: #96732c;
+  --co-stat-resource: #b89143;
+
+  /* Dialogues de jets (Compétence / Attaque) */
+  --co-dialog-skill-bg: #131230;
+  --co-dialog-skill-accent: #c69f4f;
+  --co-dialog-skill-highlight: #dfb968;
+  --co-dialog-attack-bg: #131230;
+  --co-dialog-attack-accent: #c69f4f;
+  --co-dialog-attack-surface: #242252;
+  --co-dialog-overlay: #19183b;
+  --co-dialog-muted: #f3eee2;
+
+  /* Cartes de Chat harmonisées Or-Bronze & Nuit Indigo */
+  --co-chat-skill: #cfa858;
+  --co-chat-attack: #e06c53;
+  --co-chat-damages: #e54848;
+  --co-chat-heal: #48bb78;
+  --co-chat-rest: #9ae6b4;
+  --co-chat-save: #b794f4;
+  --co-chat-item: #cfa858;
+  --co-chat-shadow: rgba(207, 168, 88, 0.28);
+
+  --co-item-capacity-dark: #96732c;
+  --co-item-capacity-light: #cfa858;
+  --co-item-equipment-dark: #96732c;
+  --co-item-equipment-light: #cfa858;
+  --co-item-container-dark: #96732c;
+  --co-item-container-light: #cfa858;
+  --co-item-feature-dark: #96732c;
+  --co-item-feature-light: #cfa858;
+  --co-item-path-dark: #96732c;
+  --co-item-path-light: #cfa858;
+  --co-item-profile-dark: #96732c;
+  --co-item-profile-light: #cfa858;
+  --co-item-attack-dark: #96732c;
+  --co-item-attack-light: #cfa858;
+
+  /* Tokens de structure Nuit Indigo Royale */
+  --co2-bg-window-header: linear-gradient(90deg, #0b0a1c 0%, #19173e 50%, #0b0a1c 100%);
+  --co2-window-header-text: #f0e6d2;
+  --co2-bg-sheet: radial-gradient(ellipse at 50% 0%, #1d1b46 0%, #12112c 65%, #0c0b1e 100%);
+  --co2-bg-sheet-solid: #131230;
+  --co2-bg-header-grad: linear-gradient(180deg, rgba(31, 29, 74, 0.88) 0%, rgba(19, 18, 48, 0.72) 100%);
+  --co2-bg-sidebar-grad: linear-gradient(180deg, #161538 0%, #0f0e26 100%);
+  --co2-bg-section-header: linear-gradient(90deg, #9b7832 0%, #c69f4f 55%, #9b7832 100%);
+  --co2-bg-card: #19183b;
+  --co2-bg-card-hover: #242252;
+  --co2-bg-callout: #201e4a;
+  --co2-border-gold: #c69f4f;
+  --co2-border-gold-strong: #dfb968;
+  --co2-border-gold-subtle: #353366;
+  --co2-text-primary: #f3eee2;
+  --co2-text-secondary: #a5a2c8;
+  --co2-header-text: #f3eee2;
+  --co2-badge-text: #0f0e26;
+  --co2-shadow-elevated: 0 4px 16px rgba(5, 4, 15, 0.55);
+  --co2-shadow-window: 0 20px 55px rgba(4, 3, 14, 0.78), 0 0 0 1px #c69f4f;
+}

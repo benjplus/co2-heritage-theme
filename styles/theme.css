@@ -1,0 +1,15 @@
+/**
+ * ============================================================================
+ * CHRONIQUES OUBLIÉES 2 - THÈME HÉRITAGE & GRIMOIRE (Foundry VTT v14)
+ * Fichier d'entrée principal (chargé par module.json)
+ * ============================================================================
+ */
+
+/* Polices Heroic Fantasy & Lecture Haute Lisibilité */
+@import url("https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Cinzel:wght@500;600;700;800&family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap");
+
+/* Modules de style */
+@import "./variables.css";
+@import "./ui-core.css";
+@import "./sheets-co2.css";
+@import "./chat-co2.css";

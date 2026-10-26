@@ -1,0 +1,311 @@
+/**
+ * ============================================================================
+ * CARTES DE CHAT, ATTAQUES & DOMMAGES — CHRONIQUES OUBLIÉES 2 (v2.3.12)
+ * Thème Héritage & Grimoire
+ * (Papier Velin Doux & Nuit Indigo Royale)
+ * ============================================================================
+ */
+
+/* Conteneur principal des messages de chat */
+body.co2-theme-active #interface #sidebar .chat-message,
+body.co2-theme-active #interface #ui-right-column-1 .chat-message {
+  background: var(--co2-bg-sheet) !important;
+  color: var(--co2-text-primary) !important;
+  border: 1.5px solid var(--co2-border-gold) !important;
+  border-radius: var(--co2-radius-sm);
+  box-shadow: var(--co2-shadow-elevated);
+  margin: 6px 4px;
+  padding: 8px 10px;
+}
+
+body.co2-theme-active #interface #sidebar .chat-message span,
+body.co2-theme-active #interface #ui-right-column-1 .chat-message span,
+body.co2-theme-active #interface #sidebar .chat-message label,
+body.co2-theme-active #interface #ui-right-column-1 .chat-message label,
+body.co2-theme-active #interface #sidebar .chat-message .message-header,
+body.co2-theme-active #interface #ui-right-column-1 .chat-message .message-header {
+  color: var(--co2-text-primary);
+}
+
+/* En-tête de message de chat avec portrait encadré d'Or-Bronze */
+body.co2-theme-active #interface #sidebar .chat-message .message-header .title,
+body.co2-theme-active #interface #ui-right-column-1 .chat-message .message-header .title {
+  font-family: var(--co2-font-title);
+  font-size: 0.98rem;
+  font-weight: 800;
+  color: var(--co2-text-primary);
+}
+
+body.co2-theme-active #interface #sidebar .chat-message .message-header img,
+body.co2-theme-active #interface #ui-right-column-1 .chat-message .message-header img {
+  border-radius: var(--co2-radius-sm);
+  border: 2px solid var(--co2-border-gold);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+}
+
+/* Titres de cartes (.type-card) avec double filet Or-Bronze */
+body.co2-theme-active #interface #sidebar .chat-message .message-content .type-card,
+body.co2-theme-active #interface #ui-right-column-1 .chat-message .message-content .type-card {
+  border-bottom: 3px double var(--co2-border-gold);
+  margin-bottom: 6px;
+  padding-bottom: 2px;
+}
+
+body.co2-theme-active #interface #sidebar .chat-message .message-content .type-card label,
+body.co2-theme-active #interface #ui-right-column-1 .chat-message .message-content .type-card label {
+  font-family: var(--co2-font-title);
+  font-size: 1.12rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  color: var(--co2-border-gold);
+}
+
+/* ==========================================================================
+   CARTES D'ACTION, D'ATTAQUE & DE DOMMAGES (.co.chat-card.roll-card)
+   ========================================================================== */
+
+/* En-tête de l'action / arme utilisée (.card-item-card) — remplace le dégradé marron en dur de co.css */
+body.co2-theme-active #interface #sidebar .co.chat-card.roll-card .card-header .card-item-card,
+body.co2-theme-active #interface #ui-right-column-1 .co.chat-card.roll-card .card-header .card-item-card {
+  background: var(--co2-bg-card) !important;
+  border: 1.5px solid var(--co2-border-gold) !important;
+  border-left: 3.5px solid var(--co2-border-gold) !important;
+  border-radius: var(--co2-radius-sm) !important;
+  box-shadow: var(--co2-shadow-elevated) !important;
+  padding: 6px 10px;
+}
+
+body.co2-theme-active #interface #sidebar .co.chat-card.roll-card.damage-card .card-header .damage-item-card,
+body.co2-theme-active #interface #ui-right-column-1 .co.chat-card.roll-card.damage-card .card-header .damage-item-card {
+  border-color: var(--co2-border-gold) !important;
+  border-left: 3.5px solid var(--co-chat-damages) !important;
+}
+
+body.co2-theme-active #interface #sidebar .co.chat-card.roll-card .card-header .card-item-image,
+body.co2-theme-active #interface #ui-right-column-1 .co.chat-card.roll-card .card-header .card-item-image {
+  border: 1.5px solid var(--co2-border-gold) !important;
+  border-radius: var(--co2-radius-sm);
+  background: var(--co2-bg-callout) !important;
+}
+
+body.co2-theme-active #interface #sidebar .co.chat-card.roll-card .card-header .card-item-name,
+body.co2-theme-active #interface #ui-right-column-1 .co.chat-card.roll-card .card-header .card-item-name {
+  font-family: var(--co2-font-title);
+  font-size: 0.98rem !important;
+  font-weight: 800;
+  color: var(--co2-text-primary) !important;
+  text-shadow: none !important;
+}
+
+body.co2-theme-active #interface #sidebar .co.chat-card.roll-card .card-header .card-item-subtitle,
+body.co2-theme-active #interface #ui-right-column-1 .co.chat-card.roll-card .card-header .card-item-subtitle {
+  color: var(--co2-text-secondary) !important;
+  font-size: 0.78rem !important;
+}
+
+/* Panneau dépliant de détails du jet (.card-details-content) */
+body.co2-theme-active #interface #sidebar .co.chat-card.roll-card .card-header .card-details .card-details-content,
+body.co2-theme-active #interface #ui-right-column-1 .co.chat-card.roll-card .card-header .card-details .card-details-content,
+body.co2-theme-active #interface #sidebar .co.chat-card.roll-card.damage-card .card-header .damage-details .card-details-content,
+body.co2-theme-active #interface #ui-right-column-1 .co.chat-card.roll-card.damage-card .card-header .damage-details .card-details-content {
+  background: var(--co2-bg-callout) !important;
+  border: 1.5px solid var(--co2-border-gold) !important;
+  border-top: none !important;
+  border-radius: 0 0 var(--co2-radius-sm) var(--co2-radius-sm) !important;
+  color: var(--co2-text-primary) !important;
+}
+
+/* Affichage du total des dommages (.damage-total-group) */
+body.co2-theme-active #interface #sidebar .co.chat-card.roll-card.damage-card .card-content .damage-total-group,
+body.co2-theme-active #interface #ui-right-column-1 .co.chat-card.roll-card.damage-card .card-content .damage-total-group {
+  background: var(--co2-bg-card);
+  border: 1.5px solid var(--co2-border-gold-subtle);
+  border-top: 2.5px solid var(--co-chat-damages);
+  border-radius: var(--co2-radius-sm);
+  padding: 6px 14px;
+  margin: 4px 0;
+  width: 100%;
+  box-shadow: var(--co2-shadow-elevated);
+}
+
+body.co2-theme-active #interface #sidebar .co.chat-card.roll-card.damage-card .card-content .damage-total-group .total-result,
+body.co2-theme-active #interface #ui-right-column-1 .co.chat-card.roll-card.damage-card .card-content .damage-total-group .total-result {
+  font-family: var(--co2-font-title);
+  color: var(--co-chat-damages) !important;
+  font-weight: 800;
+}
+
+body.co2-theme-active #interface #sidebar .co.chat-card.roll-card.damage-card .card-content .damage-total-group .dm-text,
+body.co2-theme-active #interface #ui-right-column-1 .co.chat-card.roll-card.damage-card .card-content .damage-total-group .dm-text {
+  font-family: var(--co2-font-title);
+  font-size: 0.9rem !important;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--co2-text-secondary) !important;
+}
+
+/* Section Cibles & Application des Dommages (section.targets) */
+body.co2-theme-active #interface #sidebar .chat-message .message-content .card-content section.targets .targets-header,
+body.co2-theme-active #interface #ui-right-column-1 .chat-message .message-content .card-content section.targets .targets-header {
+  font-family: var(--co2-font-title);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  border-top: 1.5px solid var(--co2-border-gold-subtle);
+  color: var(--co2-border-gold) !important;
+  padding-top: 6px;
+}
+
+body.co2-theme-active #interface #sidebar .co.chat-card.roll-card.damage-card section.targets .apply-source-control .apply-mode-btn,
+body.co2-theme-active #interface #ui-right-column-1 .co.chat-card.roll-card.damage-card section.targets .apply-source-control .apply-mode-btn {
+  color: var(--co2-text-secondary) !important;
+  border: 1px solid transparent;
+  border-radius: var(--co2-radius-sm);
+  padding: 2px 8px;
+  height: 22px;
+}
+
+body.co2-theme-active #interface #sidebar .co.chat-card.roll-card.damage-card section.targets .apply-source-control .apply-mode-btn.active,
+body.co2-theme-active #interface #ui-right-column-1 .co.chat-card.roll-card.damage-card section.targets .apply-source-control .apply-mode-btn.active,
+body.co2-theme-active #interface #sidebar .co.chat-card.roll-card.damage-card section.targets .apply-source-control .apply-mode-btn:hover,
+body.co2-theme-active #interface #ui-right-column-1 .co.chat-card.roll-card.damage-card section.targets .apply-source-control .apply-mode-btn:hover {
+  color: var(--co-chat-damages) !important;
+  background: var(--co2-bg-card);
+  border-color: var(--co2-border-gold-subtle);
+}
+
+/* Lignes de cibles des dommages (.apply-target-row) — corrige le décalage top: 10px du portrait */
+body.co2-theme-active #interface #sidebar .co.chat-card.roll-card.damage-card .apply-target-row,
+body.co2-theme-active #interface #ui-right-column-1 .co.chat-card.roll-card.damage-card .apply-target-row {
+  background: var(--co2-bg-card);
+  border: 1px solid var(--co2-border-gold-subtle) !important;
+  border-radius: var(--co2-radius-sm);
+  padding: 6px 8px !important;
+  margin-top: 4px !important;
+  gap: 5px;
+}
+
+body.co2-theme-active #interface #sidebar .co.chat-card.roll-card.damage-card .apply-target-row .target-portrait,
+body.co2-theme-active #interface #ui-right-column-1 .co.chat-card.roll-card.damage-card .apply-target-row .target-portrait,
+body.co2-theme-active #interface #sidebar .chat-message .message-content .card-content section.targets .target-list .target-row .target-portrait,
+body.co2-theme-active #interface #ui-right-column-1 .chat-message .message-content .card-content section.targets .target-list .target-row .target-portrait {
+  top: 0 !important;
+  width: 32px !important;
+  height: 32px !important;
+  flex: 0 0 32px !important;
+  border-radius: var(--co2-radius-sm) !important;
+  border: 1.5px solid var(--co2-border-gold) !important;
+}
+
+body.co2-theme-active #interface #sidebar .co.chat-card.roll-card.damage-card .apply-target-row .target-controls,
+body.co2-theme-active #interface #ui-right-column-1 .co.chat-card.roll-card.damage-card .apply-target-row .target-controls {
+  margin-top: 2px !important;
+  padding-bottom: 0 !important;
+}
+
+body.co2-theme-active #interface #sidebar .co.chat-card.roll-card.damage-card .damage-multipliers,
+body.co2-theme-active #interface #ui-right-column-1 .co.chat-card.roll-card.damage-card .damage-multipliers,
+body.co2-theme-active #interface #sidebar .co.chat-card.roll-card.save-card .card-content .save-target-dmg-row .damage-multipliers,
+body.co2-theme-active #interface #ui-right-column-1 .co.chat-card.roll-card.save-card .card-content .save-target-dmg-row .damage-multipliers {
+  margin-left: 0 !important;
+  gap: 3px !important;
+}
+
+/* Boutons multiplicateurs de dommages (×0, ×½, ×1, ×1.5, ×2, Soin) */
+body.co2-theme-active #interface #sidebar .co.chat-card.roll-card.damage-card .damage-multipliers .multiplier-btn,
+body.co2-theme-active #interface #ui-right-column-1 .co.chat-card.roll-card.damage-card .damage-multipliers .multiplier-btn,
+body.co2-theme-active #interface #sidebar .co.chat-card.roll-card.save-card .card-content .save-target-dmg-row .damage-multipliers .multiplier-btn,
+body.co2-theme-active #interface #ui-right-column-1 .co.chat-card.roll-card.save-card .card-content .save-target-dmg-row .damage-multipliers .multiplier-btn {
+  height: 22px !important;
+  font-family: var(--co2-font-sans);
+  font-size: 0.74rem !important;
+  font-weight: 700 !important;
+  background: var(--co2-bg-callout) !important;
+  color: var(--co2-text-primary) !important;
+  border: 1px solid var(--co2-border-gold) !important;
+  border-radius: var(--co2-radius-sm) !important;
+  box-shadow: none !important;
+}
+
+body.co2-theme-active #interface #sidebar .co.chat-card.roll-card.damage-card .damage-multipliers .multiplier-btn:hover,
+body.co2-theme-active #interface #ui-right-column-1 .co.chat-card.roll-card.damage-card .damage-multipliers .multiplier-btn:hover,
+body.co2-theme-active #interface #sidebar .co.chat-card.roll-card.save-card .card-content .save-target-dmg-row .damage-multipliers .multiplier-btn:hover,
+body.co2-theme-active #interface #ui-right-column-1 .co.chat-card.roll-card.save-card .card-content .save-target-dmg-row .damage-multipliers .multiplier-btn:hover {
+  background: var(--co2-bg-card-hover) !important;
+  border-color: var(--co-chat-damages) !important;
+  color: var(--co-chat-damages) !important;
+}
+
+body.co2-theme-active #interface #sidebar .co.chat-card.roll-card.damage-card .damage-multipliers .multiplier-btn.active,
+body.co2-theme-active #interface #ui-right-column-1 .co.chat-card.roll-card.damage-card .damage-multipliers .multiplier-btn.active,
+body.co2-theme-active #interface #sidebar .co.chat-card.roll-card.save-card .card-content .save-target-dmg-row .damage-multipliers .multiplier-btn.active,
+body.co2-theme-active #interface #ui-right-column-1 .co.chat-card.roll-card.save-card .card-content .save-target-dmg-row .damage-multipliers .multiplier-btn.active {
+  background: var(--co-chat-damages) !important;
+  border-color: var(--co-chat-damages) !important;
+  color: #ffffff !important;
+}
+
+body.co2-theme-active #interface #sidebar .co.chat-card.roll-card.damage-card .damage-multipliers .btn-heal.active,
+body.co2-theme-active #interface #ui-right-column-1 .co.chat-card.roll-card.damage-card .damage-multipliers .btn-heal.active,
+body.co2-theme-active #interface #sidebar .co.chat-card.roll-card.save-card .card-content .save-target-dmg-row .damage-multipliers .btn-heal.active,
+body.co2-theme-active #interface #ui-right-column-1 .co.chat-card.roll-card.save-card .card-content .save-target-dmg-row .damage-multipliers .btn-heal.active {
+  background: var(--co-chat-heal) !important;
+  border-color: var(--co-chat-heal) !important;
+  color: #ffffff !important;
+}
+
+/* Boutons d'action de chat (Appliquer les dommages, Jet opposé, Sauvegarde, Boutons d'objets) */
+body.co2-theme-active #interface #sidebar .co.chat-card.roll-card.damage-card .apply-damage-btn,
+body.co2-theme-active #interface #ui-right-column-1 .co.chat-card.roll-card.damage-card .apply-damage-btn,
+body.co2-theme-active #interface #sidebar .apply-btn,
+body.co2-theme-active #interface #ui-right-column-1 .apply-btn {
+  font-family: var(--co2-font-title);
+  font-size: 0.74rem !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.04em;
+  border: 1.5px solid var(--co-chat-damages) !important;
+  border-radius: var(--co2-radius-sm) !important;
+  background: color-mix(in srgb, var(--co-chat-damages) 12%, var(--co2-bg-card)) !important;
+  color: var(--co-chat-damages) !important;
+  box-shadow: none !important;
+  padding: 5px 10px;
+  transition: all var(--co2-transition-fast);
+}
+
+body.co2-theme-active #interface #sidebar .co.chat-card.roll-card.damage-card .apply-damage-btn:hover,
+body.co2-theme-active #interface #ui-right-column-1 .co.chat-card.roll-card.damage-card .apply-damage-btn:hover,
+body.co2-theme-active #interface #sidebar .apply-btn:hover:not(:disabled),
+body.co2-theme-active #interface #ui-right-column-1 .apply-btn:hover:not(:disabled) {
+  background: var(--co-chat-damages) !important;
+  color: #ffffff !important;
+}
+
+/* Remplace les boutons magenta #5d142b3d de co.css (opposite-roll, save-roll, item-card button-row) */
+body.co2-theme-active #interface #sidebar .co.chat-card.roll-card .card-content button.opposite-roll,
+body.co2-theme-active #interface #ui-right-column-1 .co.chat-card.roll-card .card-content button.opposite-roll,
+body.co2-theme-active #interface #sidebar .co.chat-card.roll-card.save-card .card-content .save-roll,
+body.co2-theme-active #interface #ui-right-column-1 .co.chat-card.roll-card.save-card .card-content .save-roll,
+body.co2-theme-active #interface #sidebar .co.chat-card.roll-card.item-card .button-row button,
+body.co2-theme-active #interface #ui-right-column-1 .co.chat-card.roll-card.item-card .button-row button {
+  background: var(--co2-bg-card) !important;
+  color: var(--co2-text-primary) !important;
+  border: 1.5px solid var(--co2-border-gold) !important;
+  border-radius: var(--co2-radius-sm) !important;
+  box-shadow: var(--co2-shadow-elevated) !important;
+  font-family: var(--co2-font-sans);
+  font-weight: 700;
+  padding: 4px 10px !important;
+  transition: all var(--co2-transition-fast);
+}
+
+body.co2-theme-active #interface #sidebar .co.chat-card.roll-card .card-content button.opposite-roll:hover,
+body.co2-theme-active #interface #ui-right-column-1 .co.chat-card.roll-card .card-content button.opposite-roll:hover,
+body.co2-theme-active #interface #sidebar .co.chat-card.roll-card.save-card .card-content .save-roll:hover,
+body.co2-theme-active #interface #ui-right-column-1 .co.chat-card.roll-card.save-card .card-content .save-roll:hover,
+body.co2-theme-active #interface #sidebar .co.chat-card.roll-card.item-card .button-row button:hover,
+body.co2-theme-active #interface #ui-right-column-1 .co.chat-card.roll-card.item-card .button-row button:hover {
+  background: var(--co2-bg-section-header) !important;
+  color: var(--co2-badge-text, #ffffff) !important;
+  border-color: var(--co2-border-gold-strong) !important;
+}
