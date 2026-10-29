@@ -64,17 +64,19 @@ co2-heritage-theme/
 
 ## 4. Direction artistique & Charte Héritage & Grimoire
 
-Le module propose **2 ambiances visuelles (presets)** contrôlées par l'attribut `body[data-co2-theme-preset="..."]`, choisies **automatiquement selon le thème natif de Foundry** (Configuration > Thème de l'interface : clair → Thème Clair, sombre → Thème Sombre). Il n'y a ni réglage ni bouton de bascule propre au module :
+Le module propose un sélecteur d'ambiances visuelles (presets) dans les réglages du module (`game.settings.get("co2-heritage-theme", "themePreset")`, scope: client), contrôlé par l'attribut `body[data-co2-theme-preset="..."]`.
+Par défaut (`"auto"`), le thème s'adapte automatiquement au thème natif de Foundry (clair → Papier Velin, sombre → Nuit Indigo).
 
-### 1. `theme-2-vellum-2024` — *Thème Clair : Papier Velin Doux & Or-Bronze* (Défaut)
-- **Fonds** : Parchemin velin chaud (`#f5efe2`), cartes albâtre (`#fbf9f4`), encadrés (`#efe6d4`).
-- **Accents & Filets** : Or-Bronze antique (`#a88948` / `#876b30`), texte encre sépia foncé (`#252019`).
-- **Schéma natif des formulaires** : `--co2-color-scheme: light`.
-
-### 2. `theme-4-indigo-night-2024` — *Thème Sombre : Nuit Indigo Royale & Or-Bronze*
-- **Fonds** : Bleu Nuit Indigo profond (`#131230` → `#1d1b46` → `#0c0b1e`), cartes (`#19183b`), encadrés (`#201e4a`).
-- **Accents & Filets** : Or-Bronze lumineux (`#c69f4f` / `#dfb968`), texte ivoire (`#f3eee2`), texte sur bandeau or (`#0f0e26`).
-- **Schéma natif des formulaires** : `--co2-color-scheme: dark`.
+### Presets disponibles :
+1. `theme-2-vellum-2024` — *Papier Velin Doux & Or-Bronze* (Clair / Défaut clair) : Médaillon `◇ ⬡ ◇`
+2. `theme-4-indigo-night-2024` — *Nuit Indigo Royale & Or-Bronze* (Sombre / Défaut sombre) : Médaillon `◇ ⬡ ◇`
+3. `theme-forest-amber` — *Sylve & Sève d'Or (Mousse Ancestrale & Cuivre/Ambre)* : Médaillon `✦ 🍃 ✦`
+4. `theme-dwarf-forge` — *Forge & Braise (Granite Sombre & Cuivre Incandescent)* : Médaillon `◆ ⚒ ◆`
+5. `theme-frost-silver` — *Cœur de Givre (Bleu Polaire & Argent Stellaire)* : Médaillon `✦ ❄ ✦`
+6. `theme-desert-lapis` — *Sables d'Ocre & Lapis-Lazuli (Ambiance Sud & Or Solaire)* : Médaillon `✦ ☀️ ✦`
+7. `theme-gothic-blood` — *Sang de Cendre & Fer Noir (Dark Fantasy & Gothique)* : Médaillon `✦ 🗡 ✦`
+8. `theme-royal-illumination` — *Enluminure Royale (Cobalt Héraldique & Or Impérial)* : Médaillon `✦ ⚜ ✦`
+9. `theme-cthulhu-abyss` — *Abysses de R'lyeh (Horreur Cosmique & Vert-de-Gris)* : Médaillon `✦ 🜏 ✦`
 
 ### Ornements graphiques signatures (`body[data-co2-ornaments="true"]`)
 1. **Cadre géométrique ornemental (`.co2-book-frame`)** :

@@ -6,12 +6,19 @@
         "Hint": "Active l'habillage visuel Héritage & Grimoire pour votre compte. Si vous décochez cette case, vous conservez l'affichage et les couleurs de base du système sans affecter les autres joueurs."
       },
       "Preset": {
-        "Name": "Ambiance visuelle (Héritage & Grimoire)",
-        "Hint": "Choisissez entre les deux chartes : Papier Velin Doux ou Nuit Indigo Royale.",
+        "Name": "Ambiance visuelle (Thème)",
+        "Hint": "Choisissez l'ambiance visuelle pour vos feuilles et fenêtres parmi les thèmes immersifs proposés.",
         "Choices": {
           "auto": "Automatique (suit le thème clair/sombre de Foundry)",
-          "theme-2-vellum-2024": "Thème Clair — Papier Velin Doux & Or-Bronze",
-          "theme-4-indigo-night-2024": "Thème Sombre — Nuit Indigo Royale & Or-Bronze"
+          "theme-2-vellum-2024": "📜 Papier Velin Doux & Or-Bronze (Clair)",
+          "theme-4-indigo-night-2024": "🌌 Nuit Indigo Royale & Or-Bronze (Sombre)",
+          "theme-forest-amber": "🌲 Sylve & Sève d'Or (Mousse & Ambre)",
+          "theme-dwarf-forge": "⚒️ Forge & Braise (Granite & Cuivre Incandescent)",
+          "theme-frost-silver": "❄️ Cœur de Givre (Bleu Polaire & Argent)",
+          "theme-desert-lapis": "☀️ Sables d'Ocre & Lapis-Lazuli",
+          "theme-gothic-blood": "🩸 Sang de Cendre & Fer Noir (Gothique)",
+          "theme-royal-illumination": "👑 Enluminure Royale (Cobalt & Or Impérial)",
+          "theme-cthulhu-abyss": "🐙 Abysses de R'lyeh (Horreur Cosmique)"
         }
       },
       "StyleCoreUI": {
@@ -19,8 +26,8 @@
         "Hint": "Applique le thème également à la barre latérale, au chat, à la barre de macros et aux contrôles de scène."
       },
       "Ornaments": {
-        "Name": "Ornements et bordures (Hexagones ⬡, Fanion NIV. & Double Filet Or)",
-        "Hint": "Ajoute les médaillons hexagonaux ⬡, le fanion de niveau en queue d'aronde et le double cadre or-bronze géométrique sur les feuilles."
+        "Name": "Ornements et bordures (Médaillons, Fanion NIV. & Double Filet)",
+        "Hint": "Ajoute les médaillons thématiques, le fanion de niveau en queue d'aronde et le double cadre géométrique sur les feuilles."
       },
       "CompactMode": {
         "Name": "Mode compact pour les feuilles",

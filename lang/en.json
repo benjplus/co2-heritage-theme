@@ -6,12 +6,19 @@
         "Hint": "Enables the Heritage & Grimoire visual styling for your account. Unchecking this keeps the default system styling for you without affecting other players."
       },
       "Preset": {
-        "Name": "Visual Preset (Heritage & Grimoire)",
-        "Hint": "Choose between the two color themes: Soft Vellum Parchment or Royal Midnight Indigo.",
+        "Name": "Visual Preset (Theme)",
+        "Hint": "Choose the visual ambiance for your character sheets and windows from the immersive presets.",
         "Choices": {
           "auto": "Automatic (follows Foundry light/dark theme)",
-          "theme-2-vellum-2024": "Light Theme — Soft Vellum & Antique Gold-Bronze",
-          "theme-4-indigo-night-2024": "Dark Theme — Royal Midnight Indigo & Gold-Bronze"
+          "theme-2-vellum-2024": "📜 Soft Vellum Parchment & Gold-Bronze (Light)",
+          "theme-4-indigo-night-2024": "🌌 Royal Midnight Indigo & Gold-Bronze (Dark)",
+          "theme-forest-amber": "🌲 Sylvan Canopy & Amber Sap (Moss & Copper)",
+          "theme-dwarf-forge": "⚒️ Dwarven Forge & Embers (Granite & Incandescent Copper)",
+          "theme-frost-silver": "❄️ Heart of Frost (Polar Blue & Stellar Silver)",
+          "theme-desert-lapis": "☀️ Ochre Sands & Lapis Lazuli",
+          "theme-gothic-blood": "🩸 Ash & Blood Iron (Gothic Dark Fantasy)",
+          "theme-royal-illumination": "👑 Royal Illumination (Cobalt & Imperial Gold)",
+          "theme-cthulhu-abyss": "🐙 Abyssal Depths of R'lyeh (Cosmic Horror)"
         }
       },
       "StyleCoreUI": {
@@ -19,8 +26,8 @@
         "Hint": "Applies the theme to the sidebar, chat log, hotbar, and scene controls."
       },
       "Ornaments": {
-        "Name": "Ornaments and Borders (Hexagons ⬡, Swallowtail Level & Double Gold Frame)",
-        "Hint": "Adds the hexagon ⬡ section emblems, swallowtail level banner, and double gold-bronze geometric frame on sheets."
+        "Name": "Ornaments and Borders (Medallions, Level Banner & Double Gold Frame)",
+        "Hint": "Adds thematic medallions, the swallowtail level banner, and the geometric frame to sheets."
       },
       "CompactMode": {
         "Name": "Compact Sheet Layout",

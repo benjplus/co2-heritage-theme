@@ -187,3 +187,551 @@ body.co2-theme-active[data-co2-theme-preset="theme-4-indigo-night-2024"] {
   --co2-shadow-elevated: 0 4px 16px rgba(5, 4, 15, 0.55);
   --co2-shadow-window: 0 20px 55px rgba(4, 3, 14, 0.78), 0 0 0 1px #c69f4f;
 }
+
+
+/* ==========================================================================
+   THÈME 3 : SYLVE & SÈVE D'OR (Mousse Ancestrale & Cuivre/Ambre)
+   ========================================================================== */
+body.co2-theme-active .co2-themed-window[data-co2-theme-preset="theme-forest-amber"],
+body.co2-theme-active[data-co2-theme-preset="theme-forest-amber"] {
+  --co2-color-scheme: dark;
+  --co-sheet-accent: #0f1c14;
+  --co-sheet-accent-alt: #c4823d;
+  --co-surface: #14281e;
+  --co-encounter-accent: #15271d;
+  --co-window-content: #0f1c14;
+  --co-text-light: #edf6f0;
+  --co-text-dark: #edf6f0;
+  --co-green: #38a169;
+  --co-grey: #6b8577;
+  --co-warning: #d97706;
+
+  --co-stat-attack: #c4823d;
+  --co-stat-initiative: #38a169;
+  --co-stat-defense: #c4823d;
+  --co-stat-health: #2f855a;
+  --co-stat-damages: #995c26;
+  --co-stat-resource: #2b6cb0;
+
+  --co-dialog-skill-bg: #0f1c14;
+  --co-dialog-skill-accent: #c4823d;
+  --co-dialog-skill-highlight: #e09d54;
+  --co-dialog-attack-bg: #0f1c14;
+  --co-dialog-attack-accent: #c4823d;
+  --co-dialog-attack-surface: #172f23;
+  --co-dialog-overlay: #14281e;
+  --co-dialog-muted: #edf6f0;
+
+  --co-chat-skill: #c4823d;
+  --co-chat-attack: #dd6b20;
+  --co-chat-damages: #e53e3e;
+  --co-chat-heal: #38a169;
+  --co-chat-rest: #68d391;
+  --co-chat-save: #4fd1c5;
+  --co-chat-item: #c4823d;
+  --co-chat-shadow: rgba(196, 130, 61, 0.28);
+
+  --co-item-capacity-dark: #995c26;
+  --co-item-capacity-light: #c4823d;
+  --co-item-equipment-dark: #995c26;
+  --co-item-equipment-light: #c4823d;
+  --co-item-container-dark: #995c26;
+  --co-item-container-light: #c4823d;
+  --co-item-feature-dark: #995c26;
+  --co-item-feature-light: #c4823d;
+  --co-item-path-dark: #995c26;
+  --co-item-path-light: #c4823d;
+  --co-item-profile-dark: #995c26;
+  --co-item-profile-light: #c4823d;
+  --co-item-attack-dark: #995c26;
+  --co-item-attack-light: #c4823d;
+
+  --co2-bg-window-header: linear-gradient(90deg, #09120c 0%, #152b1e 50%, #09120c 100%);
+  --co2-window-header-text: #f0f7f2;
+  --co2-bg-sheet: radial-gradient(ellipse at 50% 0%, #1b3829 0%, #11261b 65%, #0a1710 100%);
+  --co2-bg-sheet-solid: #0f1c14;
+  --co2-bg-header-grad: linear-gradient(180deg, rgba(27, 56, 41, 0.9) 0%, rgba(15, 28, 20, 0.72) 100%);
+  --co2-bg-sidebar-grad: linear-gradient(180deg, #162c20 0%, #0c1811 100%);
+  --co2-bg-section-header: linear-gradient(90deg, #995c26 0%, #c4823d 55%, #995c26 100%);
+  --co2-bg-card: #14281e;
+  --co2-bg-card-hover: #1c382a;
+  --co2-bg-callout: #1a3326;
+  --co2-border-gold: #c4823d;
+  --co2-border-gold-strong: #e09d54;
+  --co2-border-gold-subtle: #2d523e;
+  --co2-text-primary: #edf6f0;
+  --co2-text-secondary: #9cb5a7;
+  --co2-header-text: #f5fbf7;
+  --co2-badge-text: #08120c;
+  --co2-shadow-elevated: 0 4px 16px rgba(5, 15, 9, 0.55);
+  --co2-shadow-window: 0 20px 55px rgba(3, 10, 6, 0.8), 0 0 0 1px #c4823d;
+}
+
+/* ==========================================================================
+   THÈME 5 : FORGE & BRAISE (Granite Sombre & Cuivre Incandescent)
+   ========================================================================== */
+body.co2-theme-active .co2-themed-window[data-co2-theme-preset="theme-dwarf-forge"],
+body.co2-theme-active[data-co2-theme-preset="theme-dwarf-forge"] {
+  --co2-color-scheme: dark;
+  --co-sheet-accent: #171618;
+  --co-sheet-accent-alt: #d96b27;
+  --co-surface: #201e22;
+  --co-encounter-accent: #211e24;
+  --co-window-content: #171618;
+  --co-text-light: #f5ece4;
+  --co-text-dark: #f5ece4;
+  --co-green: #48bb78;
+  --co-grey: #807a85;
+  --co-warning: #f59e0b;
+
+  --co-stat-attack: #d96b27;
+  --co-stat-initiative: #d96b27;
+  --co-stat-defense: #d96b27;
+  --co-stat-health: #c53030;
+  --co-stat-damages: #a84611;
+  --co-stat-resource: #dd6b20;
+
+  --co-dialog-skill-bg: #171618;
+  --co-dialog-skill-accent: #d96b27;
+  --co-dialog-skill-highlight: #f78d4a;
+  --co-dialog-attack-bg: #171618;
+  --co-dialog-attack-accent: #d96b27;
+  --co-dialog-attack-surface: #27232b;
+  --co-dialog-overlay: #201e22;
+  --co-dialog-muted: #f5ece4;
+
+  --co-chat-skill: #d96b27;
+  --co-chat-attack: #e53e3e;
+  --co-chat-damages: #f56565;
+  --co-chat-heal: #48bb78;
+  --co-chat-rest: #9ae6b4;
+  --co-chat-save: #ed8936;
+  --co-chat-item: #d96b27;
+  --co-chat-shadow: rgba(217, 107, 39, 0.3);
+
+  --co-item-capacity-dark: #a84611;
+  --co-item-capacity-light: #d96b27;
+  --co-item-equipment-dark: #a84611;
+  --co-item-equipment-light: #d96b27;
+  --co-item-container-dark: #a84611;
+  --co-item-container-light: #d96b27;
+  --co-item-feature-dark: #a84611;
+  --co-item-feature-light: #d96b27;
+  --co-item-path-dark: #a84611;
+  --co-item-path-light: #d96b27;
+  --co-item-profile-dark: #a84611;
+  --co-item-profile-light: #d96b27;
+  --co-item-attack-dark: #a84611;
+  --co-item-attack-light: #d96b27;
+
+  --co2-bg-window-header: linear-gradient(90deg, #100f12 0%, #262125 50%, #100f12 100%);
+  --co2-window-header-text: #fbeee3;
+  --co2-bg-sheet: radial-gradient(ellipse at 50% 0%, #2b262d 0%, #1a181c 65%, #0f0e10 100%);
+  --co2-bg-sheet-solid: #171618;
+  --co2-bg-header-grad: linear-gradient(180deg, rgba(46, 40, 48, 0.9) 0%, rgba(23, 22, 24, 0.72) 100%);
+  --co2-bg-sidebar-grad: linear-gradient(180deg, #1e1d21 0%, #121114 100%);
+  --co2-bg-section-header: linear-gradient(90deg, #a84611 0%, #d96b27 55%, #a84611 100%);
+  --co2-bg-card: #201e22;
+  --co2-bg-card-hover: #2d2a30;
+  --co2-bg-callout: #27242a;
+  --co2-border-gold: #d96b27;
+  --co2-border-gold-strong: #f78d4a;
+  --co2-border-gold-subtle: #453c47;
+  --co2-text-primary: #f5ece4;
+  --co2-text-secondary: #b5a9b8;
+  --co2-header-text: #fff6ee;
+  --co2-badge-text: #171618;
+  --co2-shadow-elevated: 0 4px 16px rgba(10, 8, 12, 0.6);
+  --co2-shadow-window: 0 20px 55px rgba(6, 5, 8, 0.85), 0 0 0 1px #d96b27;
+}
+
+/* ==========================================================================
+   THÈME 6 : CŒUR DE GIVRE (Bleu Polaire & Argent Stellaire)
+   ========================================================================== */
+body.co2-theme-active .co2-themed-window[data-co2-theme-preset="theme-frost-silver"],
+body.co2-theme-active[data-co2-theme-preset="theme-frost-silver"] {
+  --co2-color-scheme: dark;
+  --co-sheet-accent: #0c1524;
+  --co-sheet-accent-alt: #38bdf8;
+  --co-surface: #132238;
+  --co-encounter-accent: #111d30;
+  --co-window-content: #0c1524;
+  --co-text-light: #e8f4fc;
+  --co-text-dark: #e8f4fc;
+  --co-green: #34d399;
+  --co-grey: #6885a3;
+  --co-warning: #f59e0b;
+
+  --co-stat-attack: #38bdf8;
+  --co-stat-initiative: #38bdf8;
+  --co-stat-defense: #93c5fd;
+  --co-stat-health: #38bdf8;
+  --co-stat-damages: #0284c7;
+  --co-stat-resource: #60a5fa;
+
+  --co-dialog-skill-bg: #0c1524;
+  --co-dialog-skill-accent: #38bdf8;
+  --co-dialog-skill-highlight: #7dd3fc;
+  --co-dialog-attack-bg: #0c1524;
+  --co-dialog-attack-accent: #38bdf8;
+  --co-dialog-attack-surface: #192d4a;
+  --co-dialog-overlay: #132238;
+  --co-dialog-muted: #e8f4fc;
+
+  --co-chat-skill: #38bdf8;
+  --co-chat-attack: #f43f5e;
+  --co-chat-damages: #fb7185;
+  --co-chat-heal: #34d399;
+  --co-chat-rest: #6ee7b7;
+  --co-chat-save: #818cf8;
+  --co-chat-item: #38bdf8;
+  --co-chat-shadow: rgba(56, 189, 248, 0.28);
+
+  --co-item-capacity-dark: #0369a1;
+  --co-item-capacity-light: #38bdf8;
+  --co-item-equipment-dark: #0369a1;
+  --co-item-equipment-light: #38bdf8;
+  --co-item-container-dark: #0369a1;
+  --co-item-container-light: #38bdf8;
+  --co-item-feature-dark: #0369a1;
+  --co-item-feature-light: #38bdf8;
+  --co-item-path-dark: #0369a1;
+  --co-item-path-light: #38bdf8;
+  --co-item-profile-dark: #0369a1;
+  --co-item-profile-light: #38bdf8;
+  --co-item-attack-dark: #0369a1;
+  --co-item-attack-light: #38bdf8;
+
+  --co2-bg-window-header: linear-gradient(90deg, #070d17 0%, #132238 50%, #070d17 100%);
+  --co2-window-header-text: #e0f2fe;
+  --co2-bg-sheet: radial-gradient(ellipse at 50% 0%, #172c4a 0%, #0f1c30 65%, #080f1a 100%);
+  --co2-bg-sheet-solid: #0c1524;
+  --co2-bg-header-grad: linear-gradient(180deg, rgba(23, 44, 74, 0.9) 0%, rgba(12, 21, 36, 0.72) 100%);
+  --co2-bg-sidebar-grad: linear-gradient(180deg, #111e33 0%, #09101c 100%);
+  --co2-bg-section-header: linear-gradient(90deg, #1e4a7a 0%, #38bdf8 55%, #1e4a7a 100%);
+  --co2-bg-card: #132238;
+  --co2-bg-card-hover: #1c3354;
+  --co2-bg-callout: #182a45;
+  --co2-border-gold: #93c5fd;
+  --co2-border-gold-strong: #bae6fd;
+  --co2-border-gold-subtle: #243c61;
+  --co2-text-primary: #e8f4fc;
+  --co2-text-secondary: #8faec9;
+  --co2-header-text: #f0f9ff;
+  --co2-badge-text: #050b14;
+  --co2-shadow-elevated: 0 4px 16px rgba(3, 7, 15, 0.6);
+  --co2-shadow-window: 0 20px 55px rgba(2, 5, 12, 0.85), 0 0 0 1px #7dd3fc;
+}
+
+/* ==========================================================================
+   THÈME 7 : SABLES D'OCRE & LAPIS-LAZULI (Ambiance Désertique Royale)
+   ========================================================================== */
+body.co2-theme-active .co2-themed-window[data-co2-theme-preset="theme-desert-lapis"],
+body.co2-theme-active[data-co2-theme-preset="theme-desert-lapis"] {
+  --co2-color-scheme: light;
+  --co-sheet-accent: #f7f2e7;
+  --co-sheet-accent-alt: #1d4ed8;
+  --co-surface: #fffdf9;
+  --co-encounter-accent: #f0e8d5;
+  --co-window-content: #f7f2e7;
+  --co-text-light: #ffffff;
+  --co-text-dark: #231d15;
+  --co-green: #2e7d32;
+  --co-grey: #a89f91;
+  --co-warning: #c2410c;
+
+  --co-stat-attack: #1d4ed8;
+  --co-stat-initiative: #d97706;
+  --co-stat-defense: #1d4ed8;
+  --co-stat-health: #b91c1c;
+  --co-stat-damages: #b45309;
+  --co-stat-resource: #1d4ed8;
+
+  --co-dialog-skill-bg: #f7f2e7;
+  --co-dialog-skill-accent: #1d4ed8;
+  --co-dialog-skill-highlight: #3b82f6;
+  --co-dialog-attack-bg: #f7f2e7;
+  --co-dialog-attack-accent: #1d4ed8;
+  --co-dialog-attack-surface: #f0e8d5;
+  --co-dialog-overlay: #fffdf9;
+  --co-dialog-muted: #231d15;
+
+  --co-chat-skill: #1d4ed8;
+  --co-chat-attack: #c2410c;
+  --co-chat-damages: #b91c1c;
+  --co-chat-heal: #2e7d32;
+  --co-chat-rest: #15803d;
+  --co-chat-save: #7c3aed;
+  --co-chat-item: #1d4ed8;
+  --co-chat-shadow: rgba(29, 78, 216, 0.25);
+
+  --co-item-capacity-dark: #1e40af;
+  --co-item-capacity-light: #2563eb;
+  --co-item-equipment-dark: #1e40af;
+  --co-item-equipment-light: #2563eb;
+  --co-item-container-dark: #1e40af;
+  --co-item-container-light: #2563eb;
+  --co-item-feature-dark: #1e40af;
+  --co-item-feature-light: #2563eb;
+  --co-item-path-dark: #1e40af;
+  --co-item-path-light: #2563eb;
+  --co-item-profile-dark: #1e40af;
+  --co-item-profile-light: #2563eb;
+  --co-item-attack-dark: #1e40af;
+  --co-item-attack-light: #2563eb;
+
+  --co2-bg-window-header: linear-gradient(90deg, #1e3a8a 0%, #1d4ed8 50%, #1e3a8a 100%);
+  --co2-window-header-text: #fffdf9;
+  --co2-bg-sheet: radial-gradient(ellipse at 50% 0%, #fbf8f0 0%, #f2ebda 100%);
+  --co2-bg-sheet-solid: #f7f2e7;
+  --co2-bg-header-grad: linear-gradient(180deg, rgba(255, 253, 249, 0.94) 0%, rgba(240, 232, 213, 0.72) 100%);
+  --co2-bg-sidebar-grad: linear-gradient(180deg, #f0e7d4 0%, #e8dcbf 100%);
+  --co2-bg-section-header: linear-gradient(90deg, #1e3a8a 0%, #2563eb 55%, #1e3a8a 100%);
+  --co2-bg-card: #fffdf9;
+  --co2-bg-card-hover: #f5eedb;
+  --co2-bg-callout: #f0e8d5;
+  --co2-border-gold: #d97706;
+  --co2-border-gold-strong: #1d4ed8;
+  --co2-border-gold-subtle: #d6cbaf;
+  --co2-text-primary: #231d15;
+  --co2-text-secondary: #786c58;
+  --co2-header-text: #231d15;
+  --co2-badge-text: #ffffff;
+  --co2-shadow-elevated: 0 2px 8px rgba(29, 78, 216, 0.12);
+  --co2-shadow-window: 0 18px 48px rgba(35, 29, 21, 0.45), 0 0 0 1.5px #1d4ed8;
+}
+
+/* ==========================================================================
+   THÈME 8 : SANG DE CENDRE & FER NOIR (Gothique & Dark Fantasy)
+   ========================================================================== */
+body.co2-theme-active .co2-themed-window[data-co2-theme-preset="theme-gothic-blood"],
+body.co2-theme-active[data-co2-theme-preset="theme-gothic-blood"] {
+  --co2-color-scheme: dark;
+  --co-sheet-accent: #141214;
+  --co-sheet-accent-alt: #b91c1c;
+  --co-surface: #1c191c;
+  --co-encounter-accent: #1a161a;
+  --co-window-content: #141214;
+  --co-text-light: #f3ece8;
+  --co-text-dark: #f3ece8;
+  --co-green: #34d399;
+  --co-grey: #7c7278;
+  --co-warning: #ea580c;
+
+  --co-stat-attack: #b91c1c;
+  --co-stat-initiative: #7f1d1d;
+  --co-stat-defense: #991b1b;
+  --co-stat-health: #b91c1c;
+  --co-stat-damages: #7f1d1d;
+  --co-stat-resource: #6b21a8;
+
+  --co-dialog-skill-bg: #141214;
+  --co-dialog-skill-accent: #b91c1c;
+  --co-dialog-skill-highlight: #ef4444;
+  --co-dialog-attack-bg: #141214;
+  --co-dialog-attack-accent: #b91c1c;
+  --co-dialog-attack-surface: #262025;
+  --co-dialog-overlay: #1c191c;
+  --co-dialog-muted: #f3ece8;
+
+  --co-chat-skill: #b91c1c;
+  --co-chat-attack: #dc2626;
+  --co-chat-damages: #ef4444;
+  --co-chat-heal: #10b981;
+  --co-chat-rest: #6ee7b7;
+  --co-chat-save: #a855f7;
+  --co-chat-item: #b91c1c;
+  --co-chat-shadow: rgba(185, 28, 28, 0.35);
+
+  --co-item-capacity-dark: #7f1d1d;
+  --co-item-capacity-light: #b91c1c;
+  --co-item-equipment-dark: #7f1d1d;
+  --co-item-equipment-light: #b91c1c;
+  --co-item-container-dark: #7f1d1d;
+  --co-item-container-light: #b91c1c;
+  --co-item-feature-dark: #7f1d1d;
+  --co-item-feature-light: #b91c1c;
+  --co-item-path-dark: #7f1d1d;
+  --co-item-path-light: #b91c1c;
+  --co-item-profile-dark: #7f1d1d;
+  --co-item-profile-light: #b91c1c;
+  --co-item-attack-dark: #7f1d1d;
+  --co-item-attack-light: #b91c1c;
+
+  --co2-bg-window-header: linear-gradient(90deg, #0d0a0d 0%, #261619 50%, #0d0a0d 100%);
+  --co2-window-header-text: #fde8e8;
+  --co2-bg-sheet: radial-gradient(ellipse at 50% 0%, #241a20 0%, #151115 65%, #0a080a 100%);
+  --co2-bg-sheet-solid: #141214;
+  --co2-bg-header-grad: linear-gradient(180deg, rgba(38, 26, 33, 0.9) 0%, rgba(20, 18, 20, 0.72) 100%);
+  --co2-bg-sidebar-grad: linear-gradient(180deg, #1b171c 0%, #100d11 100%);
+  --co2-bg-section-header: linear-gradient(90deg, #7f1d1d 0%, #b91c1c 55%, #7f1d1d 100%);
+  --co2-bg-card: #1c191c;
+  --co2-bg-card-hover: #29242a;
+  --co2-bg-callout: #221e22;
+  --co2-border-gold: #b91c1c;
+  --co2-border-gold-strong: #ef4444;
+  --co2-border-gold-subtle: #452427;
+  --co2-text-primary: #f3ece8;
+  --co2-text-secondary: #a39397;
+  --co2-header-text: #fff5f5;
+  --co2-badge-text: #ffffff;
+  --co2-shadow-elevated: 0 4px 16px rgba(13, 8, 10, 0.65);
+  --co2-shadow-window: 0 20px 55px rgba(6, 3, 5, 0.9), 0 0 0 1px #b91c1c;
+}
+
+/* ==========================================================================
+   THÈME 9 : ENLUMINURE ROYALE (Cobalt Héraldique & Or Impérial)
+   ========================================================================== */
+body.co2-theme-active .co2-themed-window[data-co2-theme-preset="theme-royal-illumination"],
+body.co2-theme-active[data-co2-theme-preset="theme-royal-illumination"] {
+  --co2-color-scheme: light;
+  --co-sheet-accent: #faf8f2;
+  --co-sheet-accent-alt: #cca028;
+  --co-surface: #ffffff;
+  --co-encounter-accent: #f4efe2;
+  --co-window-content: #faf8f2;
+  --co-text-light: #ffffff;
+  --co-text-dark: #1e1b18;
+  --co-green: #15803d;
+  --co-grey: #9ca3af;
+  --co-warning: #b45309;
+
+  --co-stat-attack: #1e40af;
+  --co-stat-initiative: #cca028;
+  --co-stat-defense: #1e40af;
+  --co-stat-health: #b91c1c;
+  --co-stat-damages: #991b1b;
+  --co-stat-resource: #1e40af;
+
+  --co-dialog-skill-bg: #faf8f2;
+  --co-dialog-skill-accent: #1e40af;
+  --co-dialog-skill-highlight: #3b82f6;
+  --co-dialog-attack-bg: #faf8f2;
+  --co-dialog-attack-accent: #1e40af;
+  --co-dialog-attack-surface: #f4efe2;
+  --co-dialog-overlay: #ffffff;
+  --co-dialog-muted: #1e1b18;
+
+  --co-chat-skill: #1e40af;
+  --co-chat-attack: #b91c1c;
+  --co-chat-damages: #991b1b;
+  --co-chat-heal: #15803d;
+  --co-chat-rest: #16a34a;
+  --co-chat-save: #6b21a8;
+  --co-chat-item: #cca028;
+  --co-chat-shadow: rgba(30, 64, 175, 0.25);
+
+  --co-item-capacity-dark: #1e3a8a;
+  --co-item-capacity-light: #2563eb;
+  --co-item-equipment-dark: #1e3a8a;
+  --co-item-equipment-light: #2563eb;
+  --co-item-container-dark: #1e3a8a;
+  --co-item-container-light: #2563eb;
+  --co-item-feature-dark: #1e3a8a;
+  --co-item-feature-light: #2563eb;
+  --co-item-path-dark: #1e3a8a;
+  --co-item-path-light: #2563eb;
+  --co-item-profile-dark: #1e3a8a;
+  --co-item-profile-light: #2563eb;
+  --co-item-attack-dark: #1e3a8a;
+  --co-item-attack-light: #2563eb;
+
+  --co2-bg-window-header: linear-gradient(90deg, #172554 0%, #1e40af 50%, #172554 100%);
+  --co2-window-header-text: #ffffff;
+  --co2-bg-sheet: radial-gradient(ellipse at 50% 0%, #ffffff 0%, #f5efe3 100%);
+  --co2-bg-sheet-solid: #faf8f2;
+  --co2-bg-header-grad: linear-gradient(180deg, rgba(255, 255, 255, 0.95) 0%, rgba(245, 239, 227, 0.75) 100%);
+  --co2-bg-sidebar-grad: linear-gradient(180deg, #f5efe3 0%, #ede3cf 100%);
+  --co2-bg-section-header: linear-gradient(90deg, #1e3a8a 0%, #1e40af 55%, #1e3a8a 100%);
+  --co2-bg-card: #ffffff;
+  --co2-bg-card-hover: #f7f1e4;
+  --co2-bg-callout: #f3ecd9;
+  --co2-border-gold: #cca028;
+  --co2-border-gold-strong: #b8860b;
+  --co2-border-gold-subtle: #e2d19f;
+  --co2-text-primary: #1e1b18;
+  --co2-text-secondary: #6b6357;
+  --co2-header-text: #1e1b18;
+  --co2-badge-text: #ffffff;
+  --co2-shadow-elevated: 0 2px 8px rgba(30, 64, 175, 0.12);
+  --co2-shadow-window: 0 18px 48px rgba(23, 37, 84, 0.35), 0 0 0 1.5px #cca028;
+}
+
+
+/* ==========================================================================
+   THÈME 10 : ABYSSES DE R'LYEH (Horreur Cosmique & Bronze Vert-de-Gris)
+   ========================================================================== */
+body.co2-theme-active .co2-themed-window[data-co2-theme-preset="theme-cthulhu-abyss"],
+body.co2-theme-active[data-co2-theme-preset="theme-cthulhu-abyss"] {
+  --co2-color-scheme: dark;
+  --co-sheet-accent: #07130e;
+  --co-sheet-accent-alt: #4e8a70;
+  --co-surface: #0c1c15;
+  --co-encounter-accent: #11241c;
+  --co-window-content: #07130e;
+  --co-text-light: #daf0e4;
+  --co-text-dark: #daf0e4;
+  --co-green: #2ecc71;
+  --co-grey: #4c685c;
+  --co-warning: #c26928;
+
+  --co-stat-attack: #4e8a70;
+  --co-stat-initiative: #3b745c;
+  --co-stat-defense: #4e8a70;
+  --co-stat-health: #2d6b52;
+  --co-stat-damages: #822e2e;
+  --co-stat-resource: #288065;
+
+  --co-dialog-skill-bg: #07130e;
+  --co-dialog-skill-accent: #5ba384;
+  --co-dialog-skill-highlight: #70c4a0;
+  --co-dialog-attack-bg: #07130e;
+  --co-dialog-attack-accent: #5ba384;
+  --co-dialog-attack-surface: #10261d;
+  --co-dialog-overlay: #0b1a14;
+  --co-dialog-muted: #daf0e4;
+
+  --co-chat-skill: #5ba384;
+  --co-chat-attack: #b84040;
+  --co-chat-damages: #cf3434;
+  --co-chat-heal: #2ecc71;
+  --co-chat-rest: #62d69f;
+  --co-chat-save: #4a8f7c;
+  --co-chat-item: #5ba384;
+  --co-chat-shadow: rgba(43, 140, 98, 0.35);
+
+  --co-item-capacity-dark: #2b5744;
+  --co-item-capacity-light: #5ba384;
+  --co-item-equipment-dark: #2b5744;
+  --co-item-equipment-light: #5ba384;
+  --co-item-container-dark: #2b5744;
+  --co-item-container-light: #5ba384;
+  --co-item-feature-dark: #2b5744;
+  --co-item-feature-light: #5ba384;
+  --co-item-path-dark: #2b5744;
+  --co-item-path-light: #5ba384;
+  --co-item-profile-dark: #2b5744;
+  --co-item-profile-light: #5ba384;
+  --co-item-attack-dark: #2b5744;
+  --co-item-attack-light: #5ba384;
+
+  --co2-bg-window-header: linear-gradient(90deg, #030a07 0%, #0d261d 50%, #030a07 100%);
+  --co2-window-header-text: #d4ece0;
+  --co2-bg-sheet: radial-gradient(ellipse at 50% 0%, #0e2b20 0%, #081711 65%, #020704 100%);
+  --co2-bg-sheet-solid: #07130e;
+  --co2-bg-header-grad: linear-gradient(180deg, rgba(12, 33, 24, 0.92) 0%, rgba(7, 19, 14, 0.78) 100%);
+  --co2-bg-sidebar-grad: linear-gradient(180deg, #0c2118 0%, #050e0a 100%);
+  --co2-bg-section-header: linear-gradient(90deg, #1b4534 0%, #3d7e63 55%, #1b4534 100%);
+  --co2-bg-card: #0c1c15;
+  --co2-bg-card-hover: #142e23;
+  --co2-bg-callout: #10261d;
+  --co2-border-gold: #4e8a70;
+  --co2-border-gold-strong: #70c4a0;
+  --co2-border-gold-subtle: #19382b;
+  --co2-text-primary: #daf0e4;
+  --co2-text-secondary: #7fa694;
+  --co2-header-text: #e6f7ef;
+  --co2-badge-text: #020704;
+  --co2-shadow-elevated: 0 4px 16px rgba(1, 10, 6, 0.65);
+  --co2-shadow-window: 0 20px 55px rgba(0, 5, 3, 0.9), 0 0 0 1px #3d7e63;
+}

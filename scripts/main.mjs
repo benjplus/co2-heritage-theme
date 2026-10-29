@@ -1,5 +1,5 @@
 /**
- * Chroniques Oubliées 2 - Thème Héritage & Grimoire (Velin & Nuit Indigo Royale)
+ * Chroniques Oubliées 2 - Thème Héritage & Grimoire
  * Point d'entrée ESModule pour Foundry VTT v14
  */
 
@@ -25,7 +25,23 @@ function getNativeColorScheme() {
 }
 
 /**
- * Applique les attributs de thème sur le body : clair -> Papier Velin, sombre -> Nuit Indigo.
+ * Détermine le médaillon thématique selon le preset actif
+ */
+function getMedallionSymbol(preset) {
+  switch (preset) {
+    case "theme-frost-silver": return "✦ ❄ ✦";
+    case "theme-dwarf-forge": return "◆ ⚒ ◆";
+    case "theme-forest-amber": return "✦ 🍃 ✦";
+    case "theme-gothic-blood": return "✦ 🗡 ✦";
+    case "theme-desert-lapis": return "✦ ☀️ ✦";
+    case "theme-royal-illumination": return "✦ ⚜ ✦";
+    case "theme-cthulhu-abyss": return "✦ 🜏 ✦";
+    default: return "◇ ⬡ ◇";
+  }
+}
+
+/**
+ * Applique les attributs de thème sur le body selon le réglage de l'utilisateur.
  * Si le joueur a désactivé le thème pour son compte, retire tous les styles et attributs.
  */
 export function applyThemeAttributes() {
@@ -49,7 +65,10 @@ export function applyThemeAttributes() {
     return;
   }
 
-  const preset = getNativeColorScheme() === "dark" ? "theme-4-indigo-night-2024" : "theme-2-vellum-2024";
+  const selectedPreset = game.settings.get(MODULE_ID, "themePreset") ?? "auto";
+  const preset = selectedPreset === "auto"
+    ? (getNativeColorScheme() === "dark" ? "theme-4-indigo-night-2024" : "theme-2-vellum-2024")
+    : selectedPreset;
 
   const styleCoreUI = game.settings.get(MODULE_ID, "styleCoreUI") ?? true;
   const ornaments = game.settings.get(MODULE_ID, "ornaments") ?? true;
@@ -68,35 +87,43 @@ export function applyThemeAttributes() {
 }
 
 /**
- * Applique le preset propre à une fenêtre selon SON thème natif (Configuration de la feuille > Thème :
- * classe theme-light / theme-dark posée par Foundry sur la fenêtre).
- * Si la fenêtre n'a pas de thème propre (ex: fiche d'objet ou dialogue), elle hérite
- * du thème de l'acteur dont elle dépend, ou du schéma natif Foundry.
+ * Applique le preset propre à une fenêtre.
+ * Si un preset explicite est sélectionné par le joueur, toutes ses fenêtres l'utilisent.
+ * En mode "auto", respecte le thème propre de la fenêtre (theme-light / theme-dark)
+ * ou le schéma natif de Foundry.
  */
 function applyWindowTheme(element) {
-  let own = element.classList.contains("theme-dark") ? "dark" : element.classList.contains("theme-light") ? "light" : null;
+  const selectedPreset = game.settings.get(MODULE_ID, "themePreset") ?? "auto";
+  let preset;
 
-  if (!own) {
-    // 1. Si c'est un objet lié à un acteur (id contient -Actor-<id>-)
-    const actorMatch = element.id?.match(/-Actor-([A-Za-z0-9]+)/);
-    if (actorMatch) {
-      const actorEl = document.querySelector(`.co.application.sheet.actor[id*="${actorMatch[1]}"]`);
-      if (actorEl) {
-        own = actorEl.classList.contains("theme-dark") ? "dark" : actorEl.classList.contains("theme-light") ? "light" : null;
-      }
-    }
-    // 2. Si c'est un dialogue ou sous-fenêtre, hérite de la fiche d'acteur ouverte la plus récente
+  if (selectedPreset !== "auto") {
+    preset = selectedPreset;
+  } else {
+    let own = element.classList.contains("theme-dark") ? "dark" : element.classList.contains("theme-light") ? "light" : null;
+
     if (!own) {
-      const lastActor = document.querySelector(".co.application.sheet.actor");
-      if (lastActor) {
-        own = lastActor.classList.contains("theme-dark") ? "dark" : lastActor.classList.contains("theme-light") ? "light" : null;
+      // 1. Si c'est un objet lié à un acteur (id contient -Actor-<id>-)
+      const actorMatch = element.id?.match(/-Actor-([A-Za-z0-9]+)/);
+      if (actorMatch) {
+        const actorEl = document.querySelector(`.co.application.sheet.actor[id*="${actorMatch[1]}"]`);
+        if (actorEl) {
+          own = actorEl.classList.contains("theme-dark") ? "dark" : actorEl.classList.contains("theme-light") ? "light" : null;
+        }
       }
+      // 2. Si c'est un dialogue ou sous-fenêtre, hérite de la fiche d'acteur ouverte la plus récente
+      if (!own) {
+        const lastActor = document.querySelector(".co.application.sheet.actor");
+        if (lastActor) {
+          own = lastActor.classList.contains("theme-dark") ? "dark" : lastActor.classList.contains("theme-light") ? "light" : null;
+        }
+      }
+      // 3. À défaut, schéma natif Foundry
+      if (!own) own = getNativeColorScheme();
     }
-    // 3. À défaut, schéma natif Foundry
-    if (!own) own = getNativeColorScheme();
+
+    preset = own === "dark" ? "theme-4-indigo-night-2024" : "theme-2-vellum-2024";
   }
 
-  const preset = own === "dark" ? "theme-4-indigo-night-2024" : "theme-2-vellum-2024";
   if (element.dataset.co2ThemePreset !== preset) element.dataset.co2ThemePreset = preset;
   if (!element._co2ThemeObserver) {
     element._co2ThemeObserver = new MutationObserver(() => applyWindowTheme(element));
@@ -106,7 +133,7 @@ function applyWindowTheme(element) {
 
 /**
  * Injecte les ornements et finitions dans les feuilles Chroniques Oubliées 2 :
- * 1. Cadre géométrique avec les 4 coins à degrés (╬) et les médaillons hexagonaux (⬡)
+ * 1. Cadre géométrique avec les 4 coins à degrés (╬) et les médaillons thématiques
  * 2. Transformation des titres de Voies "Voie de ... (3)" en "Voie de ... | RANG 3"
  */
 function enhanceCO2SheetDOM(element) {
@@ -124,22 +151,32 @@ function enhanceCO2SheetDOM(element) {
   element.classList.add("co2-themed-window");
   applyWindowTheme(element);
 
+  const currentPreset = element.dataset.co2ThemePreset || document.body.dataset.co2ThemePreset || "theme-2-vellum-2024";
+  const medallionText = getMedallionSymbol(currentPreset);
+
   // 1. Cadre ornemental sur les feuilles d'acteurs (PJ / PNJ)
   if (element.classList.contains("actor") && !element.classList.contains("character-mini")) {
     const windowContent = element.querySelector(".window-content");
-    if (windowContent && !windowContent.querySelector(":scope > .co2-book-frame")) {
-      const frame = document.createElement("div");
-      frame.className = "co2-book-frame";
-      frame.setAttribute("aria-hidden", "true");
-      frame.innerHTML = `
-        <span class="co2-corner tl"></span>
-        <span class="co2-corner tr"></span>
-        <span class="co2-corner bl"></span>
-        <span class="co2-corner br"></span>
-        <span class="co2-hex-medallion top">◇ ⬡ ◇</span>
-        <span class="co2-hex-medallion bottom">◇ ⬡ ◇</span>
-      `;
-      windowContent.prepend(frame);
+    if (windowContent) {
+      let frame = windowContent.querySelector(":scope > .co2-book-frame");
+      if (!frame) {
+        frame = document.createElement("div");
+        frame.className = "co2-book-frame";
+        frame.setAttribute("aria-hidden", "true");
+        frame.innerHTML = `
+          <span class="co2-corner tl"></span>
+          <span class="co2-corner tr"></span>
+          <span class="co2-corner bl"></span>
+          <span class="co2-corner br"></span>
+          <span class="co2-hex-medallion top">${medallionText}</span>
+          <span class="co2-hex-medallion bottom">${medallionText}</span>
+        `;
+        windowContent.prepend(frame);
+      } else {
+        frame.querySelectorAll(".co2-hex-medallion").forEach((el) => {
+          if (el.textContent !== medallionText) el.textContent = medallionText;
+        });
+      }
     }
   }
 
@@ -202,6 +239,28 @@ function registerThemeSettings() {
     config: true,
     type: Boolean,
     default: true,
+    onChange: () => applyThemeAttributes()
+  });
+
+  game.settings.register(MODULE_ID, "themePreset", {
+    name: "CO2THEME.Settings.Preset.Name",
+    hint: "CO2THEME.Settings.Preset.Hint",
+    scope: "client",
+    config: true,
+    type: String,
+    choices: {
+      "auto": "CO2THEME.Settings.Preset.Choices.auto",
+      "theme-2-vellum-2024": "CO2THEME.Settings.Preset.Choices.theme-2-vellum-2024",
+      "theme-4-indigo-night-2024": "CO2THEME.Settings.Preset.Choices.theme-4-indigo-night-2024",
+      "theme-forest-amber": "CO2THEME.Settings.Preset.Choices.theme-forest-amber",
+      "theme-dwarf-forge": "CO2THEME.Settings.Preset.Choices.theme-dwarf-forge",
+      "theme-frost-silver": "CO2THEME.Settings.Preset.Choices.theme-frost-silver",
+      "theme-desert-lapis": "CO2THEME.Settings.Preset.Choices.theme-desert-lapis",
+      "theme-gothic-blood": "CO2THEME.Settings.Preset.Choices.theme-gothic-blood",
+      "theme-royal-illumination": "CO2THEME.Settings.Preset.Choices.theme-royal-illumination",
+      "theme-cthulhu-abyss": "CO2THEME.Settings.Preset.Choices.theme-cthulhu-abyss"
+    },
+    default: "auto",
     onChange: () => applyThemeAttributes()
   });
 
