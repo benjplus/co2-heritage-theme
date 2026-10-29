@@ -97,21 +97,42 @@ body.co2-theme-active[data-co2-theme-preset="theme-astral-glass"] .co.applicatio
 body.co2-theme-active[data-co2-theme-preset="theme-astral-glass"] .window-app.co,
 body.co2-theme-active .co.application[data-co2-theme-preset="theme-astral-glass"],
 body.co2-theme-active .window-app.co[data-co2-theme-preset="theme-astral-glass"] {
-  background: rgba(14, 12, 28, 0.65) !important;
-  backdrop-filter: blur(14px) saturate(140%);
-  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  background: rgba(12, 10, 24, 0.32) !important;
+  backdrop-filter: blur(16px) saturate(150%);
+  -webkit-backdrop-filter: blur(16px) saturate(150%);
 }
 
 body.co2-theme-active[data-co2-theme-preset="theme-astral-glass"] .co.application .window-content,
 body.co2-theme-active[data-co2-theme-preset="theme-astral-glass"] .window-app.co .window-content,
 body.co2-theme-active .co.application[data-co2-theme-preset="theme-astral-glass"] .window-content,
 body.co2-theme-active .window-app.co[data-co2-theme-preset="theme-astral-glass"] .window-content {
-  backdrop-filter: blur(14px) saturate(140%);
-  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  background: var(--co2-bg-sheet) !important;
+  backdrop-filter: blur(16px) saturate(150%);
+  -webkit-backdrop-filter: blur(16px) saturate(150%);
+}
+
+body.co2-theme-active[data-co2-theme-preset="theme-astral-glass"] .co.application .window-header,
+body.co2-theme-active[data-co2-theme-preset="theme-astral-glass"] .window-app.co .window-header,
+body.co2-theme-active .co.application[data-co2-theme-preset="theme-astral-glass"] .window-header,
+body.co2-theme-active .window-app.co[data-co2-theme-preset="theme-astral-glass"] .window-header {
+  background: var(--co2-bg-window-header) !important;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+body.co2-theme-active[data-co2-theme-preset="theme-astral-glass"] .co.application .sheet-tabs [data-tab],
+body.co2-theme-active .co.application[data-co2-theme-preset="theme-astral-glass"] .sheet-tabs [data-tab] {
+  background: rgba(20, 16, 40, 0.4) !important;
+}
+
+body.co2-theme-active[data-co2-theme-preset="theme-astral-glass"] .co.application .sheet-tabs [data-tab].active,
+body.co2-theme-active .co.application[data-co2-theme-preset="theme-astral-glass"] .sheet-tabs [data-tab].active {
+  background: rgba(109, 40, 217, 0.65) !important;
 }
 
 body.co2-theme-active[data-co2-theme-preset="theme-astral-glass"] #interface #sidebar .chat-message,
 body.co2-theme-active[data-co2-theme-preset="theme-astral-glass"] #interface #ui-right-column-1 .chat-message {
-  backdrop-filter: blur(10px) saturate(130%);
-  -webkit-backdrop-filter: blur(10px) saturate(130%);
+  background: rgba(16, 14, 32, 0.55) !important;
+  backdrop-filter: blur(12px) saturate(140%);
+  -webkit-backdrop-filter: blur(12px) saturate(140%);
 }

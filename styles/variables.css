@@ -743,13 +743,13 @@ body.co2-theme-active[data-co2-theme-preset="theme-cthulhu-abyss"] {
 body.co2-theme-active .co2-themed-window[data-co2-theme-preset="theme-astral-glass"],
 body.co2-theme-active[data-co2-theme-preset="theme-astral-glass"] {
   --co2-color-scheme: dark;
-  --co-sheet-accent: rgba(20, 18, 42, 0.75);
+  --co-sheet-accent: rgba(20, 18, 42, 0.45);
   --co-sheet-accent-alt: #a855f7;
-  --co-surface: rgba(30, 27, 60, 0.6);
-  --co-encounter-accent: rgba(25, 22, 50, 0.65);
-  --co-window-content: rgba(18, 16, 38, 0.75);
-  --co-text-light: #f3f0ff;
-  --co-text-dark: #f3f0ff;
+  --co-surface: rgba(30, 27, 60, 0.35);
+  --co-encounter-accent: rgba(25, 22, 50, 0.4);
+  --co-window-content: rgba(18, 16, 38, 0.45);
+  --co-text-light: #ffffff;
+  --co-text-dark: #ffffff;
   --co-green: #34d399;
   --co-grey: #94a3b8;
   --co-warning: #f59e0b;
@@ -761,14 +761,14 @@ body.co2-theme-active[data-co2-theme-preset="theme-astral-glass"] {
   --co-stat-damages: #fb7185;
   --co-stat-resource: #38bdf8;
 
-  --co-dialog-skill-bg: rgba(20, 18, 42, 0.82);
+  --co-dialog-skill-bg: rgba(20, 18, 42, 0.6);
   --co-dialog-skill-accent: #a855f7;
   --co-dialog-skill-highlight: #c084fc;
-  --co-dialog-attack-bg: rgba(20, 18, 42, 0.82);
+  --co-dialog-attack-bg: rgba(20, 18, 42, 0.6);
   --co-dialog-attack-accent: #a855f7;
-  --co-dialog-attack-surface: rgba(30, 27, 60, 0.7);
-  --co-dialog-overlay: rgba(15, 14, 32, 0.8);
-  --co-dialog-muted: #f3f0ff;
+  --co-dialog-attack-surface: rgba(30, 27, 60, 0.5);
+  --co-dialog-overlay: rgba(15, 14, 32, 0.5);
+  --co-dialog-muted: #ffffff;
 
   --co-chat-skill: #a855f7;
   --co-chat-attack: #f43f5e;
@@ -794,23 +794,23 @@ body.co2-theme-active[data-co2-theme-preset="theme-astral-glass"] {
   --co-item-attack-dark: #581c87;
   --co-item-attack-light: #a855f7;
 
-  --co2-bg-window-header: linear-gradient(90deg, rgba(16, 14, 35, 0.88) 0%, rgba(38, 30, 72, 0.88) 50%, rgba(16, 14, 35, 0.88) 100%);
-  --co2-window-header-text: #f3f0ff;
-  --co2-bg-sheet: radial-gradient(ellipse at 50% 0%, rgba(32, 28, 65, 0.72) 0%, rgba(20, 18, 42, 0.8) 65%, rgba(12, 11, 26, 0.88) 100%);
-  --co2-bg-sheet-solid: rgba(18, 16, 38, 0.82);
-  --co2-bg-header-grad: linear-gradient(180deg, rgba(38, 32, 75, 0.75) 0%, rgba(20, 18, 42, 0.55) 100%);
-  --co2-bg-sidebar-grad: linear-gradient(180deg, rgba(28, 25, 58, 0.7) 0%, rgba(14, 13, 30, 0.85) 100%);
-  --co2-bg-section-header: linear-gradient(90deg, rgba(109, 40, 217, 0.85) 0%, rgba(168, 85, 247, 0.85) 55%, rgba(109, 40, 217, 0.85) 100%);
-  --co2-bg-card: rgba(35, 30, 68, 0.55);
-  --co2-bg-card-hover: rgba(54, 46, 102, 0.68);
-  --co2-bg-callout: rgba(42, 36, 80, 0.52);
-  --co2-border-gold: rgba(192, 132, 252, 0.75);
+  --co2-bg-window-header: linear-gradient(90deg, rgba(16, 14, 35, 0.72) 0%, rgba(38, 30, 72, 0.72) 50%, rgba(16, 14, 35, 0.72) 100%);
+  --co2-window-header-text: #ffffff;
+  --co2-bg-sheet: radial-gradient(ellipse at 50% 0%, rgba(32, 28, 65, 0.42) 0%, rgba(16, 14, 32, 0.52) 100%);
+  --co2-bg-sheet-solid: rgba(18, 16, 38, 0.48);
+  --co2-bg-header-grad: linear-gradient(180deg, rgba(38, 32, 75, 0.45) 0%, rgba(20, 18, 42, 0.28) 100%);
+  --co2-bg-sidebar-grad: linear-gradient(180deg, rgba(28, 25, 58, 0.4) 0%, rgba(14, 13, 30, 0.5) 100%);
+  --co2-bg-section-header: linear-gradient(90deg, rgba(109, 40, 217, 0.72) 0%, rgba(168, 85, 247, 0.72) 55%, rgba(109, 40, 217, 0.72) 100%);
+  --co2-bg-card: rgba(35, 30, 68, 0.35);
+  --co2-bg-card-hover: rgba(54, 46, 102, 0.55);
+  --co2-bg-callout: rgba(42, 36, 80, 0.35);
+  --co2-border-gold: rgba(192, 132, 252, 0.65);
   --co2-border-gold-strong: #d8b4fe;
-  --co2-border-gold-subtle: rgba(168, 85, 247, 0.35);
-  --co2-text-primary: #f5f3ff;
-  --co2-text-secondary: #c4b5fd;
+  --co2-border-gold-subtle: rgba(168, 85, 247, 0.3);
+  --co2-text-primary: #ffffff;
+  --co2-text-secondary: #ddd6fe;
   --co2-header-text: #ffffff;
   --co2-badge-text: #ffffff;
   --co2-shadow-elevated: 0 4px 18px rgba(0, 0, 0, 0.4), 0 0 10px rgba(168, 85, 247, 0.22);
-  --co2-shadow-window: 0 25px 65px rgba(0, 0, 0, 0.65), 0 0 25px rgba(168, 85, 247, 0.25), 0 0 0 1.5px rgba(192, 132, 252, 0.65);
+  --co2-shadow-window: 0 20px 50px rgba(0, 0, 0, 0.5), 0 0 20px rgba(168, 85, 247, 0.2), 0 0 0 1px rgba(192, 132, 252, 0.5);
 }
