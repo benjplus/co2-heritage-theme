@@ -77,6 +77,7 @@ Par défaut (`"auto"`), le thème s'adapte automatiquement au thème natif de Fo
 7. `theme-gothic-blood` — *Sang de Cendre & Fer Noir (Dark Fantasy & Gothique)* : Médaillon `✦ 🗡 ✦`
 8. `theme-royal-illumination` — *Enluminure Royale (Cobalt Héraldique & Or Impérial)* : Médaillon `✦ ⚜ ✦`
 9. `theme-cthulhu-abyss` — *Abysses de R'lyeh (Horreur Cosmique & Vert-de-Gris)* : Médaillon `✦ 🜏 ✦`
+10. `theme-astral-glass` — *Voile Astral & Verre Fumé (Translucide & Glassmorphism)* : Médaillon `✦ 🔮 ✦`
 
 ### Ornements graphiques signatures (`body[data-co2-ornaments="true"]`)
 1. **Cadre géométrique ornemental (`.co2-book-frame`)** :
@@ -147,4 +148,3 @@ Tout agent ou contributeur travaillant sur le dépôt **doit obligatoirement** f
    - Tagge la version (`vX.Y.Z`).
    - Crée la Release officielle sur GitHub.
    - Archive et attache `module.zip` et `module.json`.
-

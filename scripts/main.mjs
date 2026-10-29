@@ -36,6 +36,7 @@ function getMedallionSymbol(preset) {
     case "theme-desert-lapis": return "✦ ☀️ ✦";
     case "theme-royal-illumination": return "✦ ⚜ ✦";
     case "theme-cthulhu-abyss": return "✦ 🜏 ✦";
+    case "theme-astral-glass": return "✦ 🔮 ✦";
     default: return "◇ ⬡ ◇";
   }
 }
@@ -258,7 +259,8 @@ function registerThemeSettings() {
       "theme-desert-lapis": "CO2THEME.Settings.Preset.Choices.theme-desert-lapis",
       "theme-gothic-blood": "CO2THEME.Settings.Preset.Choices.theme-gothic-blood",
       "theme-royal-illumination": "CO2THEME.Settings.Preset.Choices.theme-royal-illumination",
-      "theme-cthulhu-abyss": "CO2THEME.Settings.Preset.Choices.theme-cthulhu-abyss"
+      "theme-cthulhu-abyss": "CO2THEME.Settings.Preset.Choices.theme-cthulhu-abyss",
+      "theme-astral-glass": "CO2THEME.Settings.Preset.Choices.theme-astral-glass"
     },
     default: "auto",
     onChange: () => applyThemeAttributes()
