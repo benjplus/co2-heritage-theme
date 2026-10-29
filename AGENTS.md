@@ -79,6 +79,10 @@ Par défaut (`"auto"`), le thème s'adapte automatiquement au thème natif de Fo
 9. `theme-cthulhu-abyss` — *Abysses de R'lyeh (Horreur Cosmique & Vert-de-Gris)* : Médaillon `✦ 🜏 ✦`
 10. `theme-astral-glass` — *Voile Astral & Verre Fumé (Translucide & Glassmorphism)* : Médaillon `✦ 🔮 ✦`
 
+### Thèmes par Document (Acteur / Rencontre / Objet)
+Le module enrichit la configuration native des feuilles de Foundry VTT v14 (`DocumentSheetConfig`, icône ⚙️ ou clic droit sur l'en-tête de fenêtre).
+Tous les presets sont injectés dynamiquement dans `CONFIG.Actor.sheetClasses` et `CONFIG.Item.sheetClasses`. Le MJ ou le joueur peut ainsi affecter un thème individuel à un personnage ou PNJ précis via le champ natif **"Thème"** (`SHEETS.Theme`) de la feuille. Le thème individuel du document prévaut sur le preset global choisi dans les paramètres du client.
+
 ### Ornements graphiques signatures (`body[data-co2-ornaments="true"]`)
 1. **Cadre géométrique ornemental (`.co2-book-frame`)** :
    - Injecté par `enhanceCO2SheetDOM()` ([`scripts/main.mjs`](./scripts/main.mjs)) dans `.co.application.sheet.actor .window-content` (avec `pointer-events: none`).

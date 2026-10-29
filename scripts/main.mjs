@@ -88,56 +88,139 @@ export function applyThemeAttributes() {
 }
 
 /**
- * Applique le preset propre à une fenêtre.
- * Si un preset explicite est sélectionné par le joueur, toutes ses fenêtres l'utilisent.
- * En mode "auto", respecte le thème propre de la fenêtre (theme-light / theme-dark)
- * ou le schéma natif de Foundry.
+ * Liste des presets disponibles pour la résolution de thème par fenêtre
  */
-function applyWindowTheme(element) {
-  const selectedPreset = game.settings.get(MODULE_ID, "themePreset") ?? "auto";
-  let preset;
+const KNOWN_PRESETS = [
+  "theme-2-vellum-2024",
+  "theme-4-indigo-night-2024",
+  "theme-forest-amber",
+  "theme-dwarf-forge",
+  "theme-frost-silver",
+  "theme-desert-lapis",
+  "theme-gothic-blood",
+  "theme-royal-illumination",
+  "theme-cthulhu-abyss",
+  "theme-astral-glass"
+];
 
-  if (selectedPreset !== "auto") {
-    preset = selectedPreset;
-  } else {
-    let own = element.classList.contains("theme-dark") ? "dark" : element.classList.contains("theme-light") ? "light" : null;
+/**
+ * Enregistre tous les presets Héritage & Grimoire dans la liste des thèmes supportés
+ * par les feuilles Foundry VTT v14 (CONFIG.Actor.sheetClasses et CONFIG.Item.sheetClasses).
+ * Permet au MJ ou au joueur d'affecter un thème particulier à un personnage ou PNJ précis
+ * directement depuis l'option "Thème" de la boîte de configuration native de la feuille (icône ⚙️ / Feuille).
+ */
+export function registerDocumentSheetThemes() {
+  const themes = {
+    "dark": "SETTINGS.UI.FIELDS.colorScheme.choices.dark",
+    "light": "SETTINGS.UI.FIELDS.colorScheme.choices.light",
+    "2-vellum-2024": "CO2THEME.Settings.Preset.Choices.theme-2-vellum-2024",
+    "4-indigo-night-2024": "CO2THEME.Settings.Preset.Choices.theme-4-indigo-night-2024",
+    "forest-amber": "CO2THEME.Settings.Preset.Choices.theme-forest-amber",
+    "dwarf-forge": "CO2THEME.Settings.Preset.Choices.theme-dwarf-forge",
+    "frost-silver": "CO2THEME.Settings.Preset.Choices.theme-frost-silver",
+    "desert-lapis": "CO2THEME.Settings.Preset.Choices.theme-desert-lapis",
+    "gothic-blood": "CO2THEME.Settings.Preset.Choices.theme-gothic-blood",
+    "royal-illumination": "CO2THEME.Settings.Preset.Choices.theme-royal-illumination",
+    "cthulhu-abyss": "CO2THEME.Settings.Preset.Choices.theme-cthulhu-abyss",
+    "astral-glass": "CO2THEME.Settings.Preset.Choices.theme-astral-glass"
+  };
 
-    if (!own) {
-      // 1. Si c'est un objet lié à un acteur (id contient -Actor-<id>-)
-      const actorMatch = element.id?.match(/-Actor-([A-Za-z0-9]+)/);
-      if (actorMatch) {
-        const actorEl = document.querySelector(`.co.application.sheet.actor[id*="${actorMatch[1]}"]`);
-        if (actorEl) {
-          own = actorEl.classList.contains("theme-dark") ? "dark" : actorEl.classList.contains("theme-light") ? "light" : null;
-        }
-      }
-      // 2. Si c'est un dialogue ou sous-fenêtre, hérite de la fiche d'acteur ouverte la plus récente
-      if (!own) {
-        const lastActor = document.querySelector(".co.application.sheet.actor");
-        if (lastActor) {
-          own = lastActor.classList.contains("theme-dark") ? "dark" : lastActor.classList.contains("theme-light") ? "light" : null;
-        }
-      }
-      // 3. À défaut, schéma natif Foundry
-      if (!own) own = getNativeColorScheme();
+  // Feuilles d'acteurs (Personnages, Rencontres)
+  for (const subType of Object.keys(CONFIG.Actor?.sheetClasses ?? {})) {
+    for (const sheetEntry of Object.values(CONFIG.Actor.sheetClasses[subType] ?? {})) {
+      sheetEntry.themes = { ...themes };
     }
-
-    preset = own === "dark" ? "theme-4-indigo-night-2024" : "theme-2-vellum-2024";
   }
 
-  if (element.dataset.co2ThemePreset !== preset) element.dataset.co2ThemePreset = preset;
+  // Feuilles d'objets (capacités, équipements, attaques, voies...)
+  for (const subType of Object.keys(CONFIG.Item?.sheetClasses ?? {})) {
+    for (const sheetEntry of Object.values(CONFIG.Item.sheetClasses[subType] ?? {})) {
+      sheetEntry.themes = { ...themes };
+    }
+  }
+}
+
+/**
+ * Applique le preset propre à une fenêtre.
+ * Priorité 1 : Thème spécifique configuré sur le Document lui-même (via l'option native "Thème" de la feuille).
+ * Priorité 2 : Si c'est un objet lié à un acteur, héritage du thème de l'acteur.
+ * Priorité 3 : Thème global choisi par le joueur dans les options du module (ou "auto").
+ */
+function applyWindowTheme(element, app = null) {
+  if (app) element._app = app;
+  const activeApp = app || element._app;
+
+  let preset = null;
+
+  // 1. Priorité absolue : Thème individuel défini sur cette feuille précise
+  // Foundry DocumentSheetV2 injecte `theme-${theme}` dans les classes de l'application
+  for (const p of KNOWN_PRESETS) {
+    if (element.classList.contains(p)) {
+      preset = p;
+      break;
+    }
+  }
+
+  // Si pas encore dans classList mais qu'on a l'instance du Document
+  if (!preset && activeApp?.document) {
+    try {
+      const docTheme = foundry.applications?.apps?.DocumentSheetConfig?.getSheetThemeForDocument?.(activeApp.document);
+      if (docTheme) {
+        if (docTheme === "dark") preset = "theme-4-indigo-night-2024";
+        else if (docTheme === "light") preset = "theme-2-vellum-2024";
+        else if (KNOWN_PRESETS.includes(`theme-${docTheme}`)) preset = `theme-${docTheme}`;
+        else if (KNOWN_PRESETS.includes(docTheme)) preset = docTheme;
+      }
+    } catch (e) {
+      /* ignore */
+    }
+  }
+
+  // 2. Si c'est un objet (capacité, équipement, attaque) lié à un acteur, hérite du thème de l'acteur
+  if (!preset) {
+    const actorMatch = element.id?.match(/-Actor-([A-Za-z0-9]+)/);
+    if (actorMatch) {
+      const actorEl = document.querySelector(`.co.application.sheet.actor[id*="${actorMatch[1]}"]`);
+      if (actorEl?.dataset.co2ThemePreset) {
+        preset = actorEl.dataset.co2ThemePreset;
+      }
+    }
+  }
+
+  // 3. À défaut d'un thème propre au document, utilise le réglage global du module
+  if (!preset) {
+    const selectedPreset = game.settings.get(MODULE_ID, "themePreset") ?? "auto";
+    if (selectedPreset !== "auto") {
+      preset = selectedPreset;
+    } else {
+      let own = element.classList.contains("theme-dark") ? "dark" : element.classList.contains("theme-light") ? "light" : null;
+      if (!own) {
+        const lastActor = document.querySelector(".co.application.sheet.actor");
+        if (lastActor?.dataset.co2ThemePreset) {
+          own = lastActor.dataset.co2ThemePreset === "theme-4-indigo-night-2024" ? "dark" : "light";
+        }
+      }
+      if (!own) own = getNativeColorScheme();
+      preset = own === "dark" ? "theme-4-indigo-night-2024" : "theme-2-vellum-2024";
+    }
+  }
+
+  const prevPreset = element.dataset.co2ThemePreset;
+  if (prevPreset !== preset) {
+    element.dataset.co2ThemePreset = preset;
+    const medallionText = getMedallionSymbol(preset);
+    element.querySelectorAll(".co2-hex-medallion").forEach((el) => {
+      el.textContent = medallionText;
+    });
+  }
+
   if (!element._co2ThemeObserver) {
     element._co2ThemeObserver = new MutationObserver(() => applyWindowTheme(element));
     element._co2ThemeObserver.observe(element, { attributes: true, attributeFilter: ["class"] });
   }
 }
 
-/**
- * Injecte les ornements et finitions dans les feuilles Chroniques Oubliées 2 :
- * 1. Cadre géométrique avec les 4 coins à degrés (╬) et les médaillons thématiques
- * 2. Transformation des titres de Voies "Voie de ... (3)" en "Voie de ... | RANG 3"
- */
-function enhanceCO2SheetDOM(element) {
+function enhanceCO2SheetDOM(element, app = null) {
   if (!(element instanceof HTMLElement)) return;
   if (game.system?.id !== "co2") return;
 
@@ -150,7 +233,7 @@ function enhanceCO2SheetDOM(element) {
   }
 
   element.classList.add("co2-themed-window");
-  applyWindowTheme(element);
+  applyWindowTheme(element, app);
 
   const currentPreset = element.dataset.co2ThemePreset || document.body.dataset.co2ThemePreset || "theme-2-vellum-2024";
   const medallionText = getMedallionSymbol(currentPreset);
@@ -302,6 +385,7 @@ function registerThemeSettings() {
 /* -------------------------------------------- */
 
 Hooks.once("init", () => {
+  registerDocumentSheetThemes();
   console.log(`${MODULE_ID} | Initialisation du thème Héritage & Grimoire (Foundry VTT v${game.version})`);
   registerThemeSettings();
 
@@ -325,6 +409,7 @@ Hooks.once("init", () => {
 });
 
 Hooks.once("ready", () => {
+  registerDocumentSheetThemes();
   applyThemeAttributes();
   console.log(`${MODULE_ID} | Thème appliqué avec succès (${document.body.dataset.co2ThemePreset})`);
 });
@@ -345,10 +430,10 @@ Hooks.once("ready", () => {
 });
 
 Hooks.on("renderApplicationV2", (app, element) => {
-  enhanceCO2SheetDOM(element);
+  enhanceCO2SheetDOM(element, app);
 });
 
 Hooks.on("renderApplication", (app, html) => {
   const el = html instanceof HTMLElement ? html : html?.[0];
-  enhanceCO2SheetDOM(el);
+  enhanceCO2SheetDOM(el, app);
 });
