@@ -11,7 +11,6 @@ body.co2-theme-active .window-app.co {
   border-radius: var(--co2-radius-md);
   box-shadow: var(--co2-shadow-window);
   border: 1.5px solid var(--co2-border-gold);
-  transition: box-shadow var(--co2-transition-smooth);
 }
 
 /* Barre de titre de fenêtre Foundry VTT v14 (.window-header) comme dans la maquette */
