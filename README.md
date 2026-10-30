@@ -1,5 +1,7 @@
 # Chroniques Oubliées 2 — Thème Héritage & Grimoire (Foundry VTT v14)
 
+![Thème Héritage & Grimoire - À chaque héros son propre thème](assets/showcase.png)
+
 Module de thème visuel et d'interface pour le système **Chroniques Oubliées Fantasy 2e Édition (`co2`)** sous **Foundry VTT v14**, avec une direction artistique immersive Papier Velin & Nuit Indigo Royale.
 
 ---
