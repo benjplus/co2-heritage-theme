@@ -57,3 +57,10 @@ co2-heritage-theme/
   CO2Theme.inspectOpenSheets()
   ```
   pour lister toutes les feuilles ouvertes du système `co2` ainsi que leurs classes CSS exactes.
+
+
+---
+
+## Mentions légales
+
+*Chroniques Oubliées* et *Chroniques Oubliées Fantasy* sont des marques déposées appartenant à **Black Book Éditions**. Ce module est une création communautaire libre et gratuite, développée pour les joueurs et les meneurs de jeu sous Foundry VTT, et n'est pas affilié à Black Book Éditions.
