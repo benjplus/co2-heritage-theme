@@ -68,16 +68,16 @@ Le module propose un sélecteur d'ambiances visuelles (presets) dans les réglag
 Par défaut (`"auto"`), le thème s'adapte automatiquement au thème natif de Foundry (clair → Papier Velin, sombre → Nuit Indigo).
 
 ### Presets disponibles :
-1. `theme-2-vellum-2024` — *Papier Velin Doux & Or-Bronze* (Clair / Défaut clair) : Médaillon `◇ ⬡ ◇`
-2. `theme-4-indigo-night-2024` — *Nuit Indigo Royale & Or-Bronze* (Sombre / Défaut sombre) : Médaillon `◇ ⬡ ◇`
-3. `theme-forest-amber` — *Sylve & Sève d'Or (Mousse Ancestrale & Cuivre/Ambre)* : Médaillon `✦ 🍃 ✦`
-4. `theme-dwarf-forge` — *Forge & Braise (Granite Sombre & Cuivre Incandescent)* : Médaillon `◆ ⚒ ◆`
-5. `theme-frost-silver` — *Cœur de Givre (Bleu Polaire & Argent Stellaire)* : Médaillon `✦ ❄ ✦`
-6. `theme-desert-lapis` — *Sables d'Ocre & Lapis-Lazuli (Ambiance Sud & Or Solaire)* : Médaillon `✦ ☀️ ✦`
-7. `theme-gothic-blood` — *Sang de Cendre & Fer Noir (Dark Fantasy & Gothique)* : Médaillon `✦ 🗡 ✦`
-8. `theme-royal-illumination` — *Enluminure Royale (Cobalt Héraldique & Or Impérial)* : Médaillon `✦ ⚜ ✦`
-9. `theme-cthulhu-abyss` — *Abysses de R'lyeh (Horreur Cosmique & Vert-de-Gris)* : Médaillon `✦ 🜏 ✦`
-10. `theme-astral-glass` — *Voile Astral & Verre Fumé (Translucide & Glassmorphism)* : Médaillon `✦ 🔮 ✦`
+1. `theme-2-vellum-2024` — *Vélin* (Clair / Défaut clair) : Médaillon `◇ ⬡ ◇`
+2. `theme-4-indigo-night-2024` — *Nuit* (Sombre / Défaut sombre) : Médaillon `◇ ⬡ ◇`
+3. `theme-forest-amber` — *Sylve* : Médaillon `✦ 🍃 ✦`
+4. `theme-dwarf-forge` — *Forge* : Médaillon `◆ ⚒ ◆`
+5. `theme-frost-silver` — *Givre* : Médaillon `✦ ❄ ✦`
+6. `theme-desert-lapis` — *Désert* : Médaillon `✦ ☀️ ✦`
+7. `theme-gothic-blood` — *Cendre* : Médaillon `✦ 🗡 ✦`
+8. `theme-royal-illumination` — *Royauté* : Médaillon `✦ ⚜ ✦`
+9. `theme-cthulhu-abyss` — *Abysses* : Médaillon `✦ 🜏 ✦`
+10. `theme-astral-glass` — *Verre* (Translucide) : Médaillon `✦ 🔮 ✦`
 
 ### Thèmes par Document (Acteur / Rencontre / Objet)
 Le module enrichit la configuration native des feuilles de Foundry VTT v14 (`DocumentSheetConfig`, icône ⚙️ ou clic droit sur l'en-tête de fenêtre).
