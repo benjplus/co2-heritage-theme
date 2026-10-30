@@ -29,10 +29,6 @@
       "Ornaments": {
         "Name": "Ornements et bordures",
         "Hint": "Ajoute les médaillons thématiques, le fanion de niveau et le cadre géométrique sur les feuilles."
-      },
-      "CompactMode": {
-        "Name": "Mode compact pour les feuilles",
-        "Hint": "Réduit légèrement les espacements internes pour afficher davantage de voies et d'équipements sans défilement."
       }
     }
   }

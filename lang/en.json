@@ -29,10 +29,6 @@
       "Ornaments": {
         "Name": "Ornaments and Borders",
         "Hint": "Adds thematic medallions, the level banner, and the geometric frame to sheets."
-      },
-      "CompactMode": {
-        "Name": "Compact Sheet Layout",
-        "Hint": "Slightly reduces internal padding to display more paths and inventory items without scrolling."
       }
     }
   }

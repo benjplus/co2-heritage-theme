@@ -55,7 +55,6 @@ export function applyThemeAttributes() {
     delete body.dataset.co2ThemePreset;
     delete body.dataset.co2StyleCore;
     delete body.dataset.co2Ornaments;
-    delete body.dataset.co2Compact;
 
     // Nettoie les fenêtres actuellement ouvertes
     document.querySelectorAll(".co2-themed-window").forEach((el) => {
@@ -73,13 +72,10 @@ export function applyThemeAttributes() {
 
   const styleCoreUI = game.settings.get(MODULE_ID, "styleCoreUI") ?? true;
   const ornaments = game.settings.get(MODULE_ID, "ornaments") ?? true;
-  const compactMode = game.settings.get(MODULE_ID, "compactMode") ?? false;
-
   if (!body.classList.contains("co2-theme-active")) body.classList.add("co2-theme-active");
   body.dataset.co2ThemePreset = preset;
   body.dataset.co2StyleCore = String(styleCoreUI);
   body.dataset.co2Ornaments = String(ornaments);
-  body.dataset.co2Compact = String(compactMode);
 
   // Réapplique aux fenêtres ouvertes
   document.querySelectorAll(".co.application").forEach((el) => {
@@ -369,15 +365,6 @@ function registerThemeSettings() {
     onChange: () => applyThemeAttributes()
   });
 
-  game.settings.register(MODULE_ID, "compactMode", {
-    name: "CO2THEME.Settings.CompactMode.Name",
-    hint: "CO2THEME.Settings.CompactMode.Hint",
-    scope: "client",
-    config: true,
-    type: Boolean,
-    default: false,
-    onChange: () => applyThemeAttributes()
-  });
 }
 
 /* -------------------------------------------- */

@@ -16,3 +16,7 @@ dist/
 
 # Local design prototypes
 mockups/
+brag-output/
+.agents/
+skills-lock.json
+tools/*.py

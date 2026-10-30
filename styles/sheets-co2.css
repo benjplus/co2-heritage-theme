@@ -1593,8 +1593,3 @@ body.co2-theme-active .co.application.sheet.item .window-content h4.form-header 
   color: var(--co2-badge-text, #ffffff) !important;
 }
 
-/* Mode compact optionnel */
-body.co2-theme-active[data-co2-compact="true"] .co.application.sheet .items-container .item {
-  height: 25px;
-  line-height: 25px;
-}

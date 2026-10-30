@@ -44,7 +44,6 @@ co2-heritage-theme/
    - **Activer le thème Héritage & Grimoire** (activé par défaut, permet à un joueur de revenir au visuel de base du système sans affecter les autres).
    - **Ornements et bordures (Hexagones ⬡, Fanion NIV. & Double Filet Or)**
    - **Styliser l'interface globale de Foundry VTT**
-   - **Mode compact pour les feuilles**
 
 ---
 
