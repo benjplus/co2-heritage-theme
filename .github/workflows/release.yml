@@ -34,3 +34,35 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           gh release upload ${{ steps.release.outputs.tag_name }} module.json module.zip --clobber
+
+      - name: Publish to Foundry VTT Package Directory
+        if: ${{ steps.release.outputs.release_created && secrets.FOUNDRY_RELEASE_TOKEN }}
+        env:
+          FOUNDRY_TOKEN: ${{ secrets.FOUNDRY_RELEASE_TOKEN }}
+          TAG_NAME: ${{ steps.release.outputs.tag_name }}
+        run: |
+          VERSION=$(jq -r .version module.json)
+          MIN_COMPAT=$(jq -r '.compatibility.minimum // "13"' module.json)
+          VER_COMPAT=$(jq -r '.compatibility.verified // "14"' module.json)
+          MAX_COMPAT=$(jq -r '.compatibility.maximum // "14"' module.json)
+          
+          echo "Publishing version $VERSION to Foundry VTT Directory..."
+          curl -s -f -X POST "https://foundryvtt.com/_api/packages/release_version/" \
+            -H "Content-Type: application/json" \
+            -H "Authorization: $FOUNDRY_TOKEN" \
+            -d @- <<EOF
+          {
+            "id": "co2-heritage-theme",
+            "dry-run": false,
+            "release": {
+              "version": "$VERSION",
+              "manifest": "https://github.com/benjplus/co2-heritage-theme/releases/download/$TAG_NAME/module.json",
+              "notes": "https://github.com/benjplus/co2-heritage-theme/releases/tag/$TAG_NAME",
+              "compatibility": {
+                "minimum": "$MIN_COMPAT",
+                "verified": "$VER_COMPAT",
+                "maximum": "$MAX_COMPAT"
+              }
+            }
+          }
+          EOF
